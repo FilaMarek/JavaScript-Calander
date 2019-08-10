@@ -3,6 +3,7 @@
 
 var currentMonths = new Date().getMonth();
 var Months = currentMonths;
+var year = new Date().getFullYear();
 
 
 
@@ -20,6 +21,7 @@ var nextMonth = function() // button next month
     }
     else {
         Months = 0;
+        year = year + 1;
         monthTranslator();
     }
     
@@ -36,54 +38,54 @@ var lastMonth = function()// button previouse month
     }
     else {
         Months = 11;
+        year = year - 1;
         monthTranslator();
     }
     
 }
 
 
-
-
+// translates month number to word and puts it in the calander
 var monthTranslator = function()
 {
    
     switch (Months) {
     case 0:
-    document.getElementById("Months").innerHTML = "January";
+    document.getElementById("Months").innerHTML = "January " + year;
     break;
     case 1:
-    document.getElementById("Months").innerHTML = "Feburary";
+    document.getElementById("Months").innerHTML = "Feburary " + year;
     break;
     case 2:
-    document.getElementById("Months").innerHTML = "March";
+    document.getElementById("Months").innerHTML = "March " + year;
     break;
     case 3:
-    document.getElementById("Months").innerHTML = "April";
+    document.getElementById("Months").innerHTML = "April " + year;
     break;
     case 4:
-    document.getElementById("Months").innerHTML = "May";
+    document.getElementById("Months").innerHTML = "May " + year;
     break;
     case 5:
-    document.getElementById("Months").innerHTML = "June";
+    document.getElementById("Months").innerHTML = "June " + year;
     break;
     case 6:
-    document.getElementById("Months").innerHTML = "July";
+    document.getElementById("Months").innerHTML = "July " + year;
     break;
     case 7:
-    document.getElementById("Months").innerHTML = "August";
+    document.getElementById("Months").innerHTML = "August " + year;
     break;
     case 8:
-    document.getElementById("Months").innerHTML = "September";
+    document.getElementById("Months").innerHTML = "September " + year;
     break;
     case 9:
-    document.getElementById("Months").innerHTML = "October";
+    document.getElementById("Months").innerHTML = "October " + year;
     break;
     case 10:
-    document.getElementById("Months").innerHTML = "November";
+    document.getElementById("Months").innerHTML = "November " + year;
     break;
     case 11:
-    document.getElementById("Months").innerHTML = "December";
-}
+    document.getElementById("Months").innerHTML = "December " + year;
+    }
     
 }
 

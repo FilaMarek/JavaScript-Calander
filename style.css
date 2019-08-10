@@ -1,9 +1,10 @@
-w
+/*_______________________________ main Page__________________________ */
 
 #top {
     background-color: lightblue;
     width: 99%;
-    height: 200px;
+    height: 500px;
+    float: left;
 }
 #left {
     background-color: yellow;
@@ -18,6 +19,11 @@ w
     height: 700px;
     float: right;
 }
+
+
+
+
+/* ________________________Calander_________________*/
 
 #calander{
     margin-top: 5%;
@@ -53,7 +59,7 @@ w
 
 table{
     
-     border-collapse: collapse;
+    border-collapse: collapse;
     margin: 10px;
 }
 
@@ -73,6 +79,31 @@ td{
 }
 
 
+#tableTop{
+    height: 33%;
+   font-style: italic;
+    text-align: right;
+    
+}
+
+
+#tableMiddle{
+    height: 33%;
+
+    
+}
+
+
+
+#tableButtom{
+    height: 33%;
+   font-style: bold;
+    
+}
+
+
+
+/*_____________________________ buttons________________________________________ */
 
 .prvMnth{
     float: left;
