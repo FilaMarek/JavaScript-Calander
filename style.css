@@ -16,7 +16,7 @@
 #right {
     background-color: green;
     width: 40%;
-    height: 700px;
+    height: 800px;
     float: right;
 }
 
@@ -30,7 +30,7 @@
     margin-left:5%;
     background-color:LightGray;
     width: 90%;
-    height: 90%;
+    height: 95%;
     border-style: solid;
     border-width: 1px;
 }
@@ -52,8 +52,6 @@
     text-decoration: none;
     background-color: #4CAF50;/*green*/
     border-radius: 2px; 
-
-
 
 }
 
@@ -79,11 +77,11 @@ td{
 }
 
 
-#tableTop{
-    height: 33%;
-   font-style: italic;
-    text-align: right;
-    
+.tableTop{
+ height: 33%;
+ font-style: italic;
+ text-align: right;
+ background-color: skyblue;
 }
 
 
@@ -100,6 +98,7 @@ td{
    font-style: bold;
     
 }
+ 
 
 
 
