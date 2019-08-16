@@ -165,9 +165,16 @@ var countingDays = function()
                     document.getElementById("tableTop"+ tempWeekNumb/*week*/+"-"+daysOfTheweek/*day*/).innerHTML = days;  
                      days++; 
                       if((currentMonths === 0 || currentMonths === 2 || currentMonths === 4 || currentMonths === 6 || currentMonths === 7 || currentMonths === 9 || currentMonths === 11) && days <= 31)
-                            {}
-                      else if((currentMonths === 3 || currentMonths === 5 || currentMonths === 8 || currentMonths === 10) && days <= 30)
-                      {}else {break;}
+                        {}else if((currentMonths === 3 || currentMonths === 5 || currentMonths === 8 || currentMonths === 10) && days <= 30)
+                          {}else if(((currentMonths === 1 && (year % 4)=== 0) &&  days <=29) && daysOfTheweek != 6) // Feb with 29 days every 4 years
+                            {}else if((currentMonths === 1 && (year % 4)> 0) &&  days <=28)// Feb with 28 days other years
+								{}else if ((currentMonths === 1 && (year % 4)=== 0) &&  days === 30 && daysOfTheweek === 6)
+									{
+										daysOfTheweek=8; 
+										tempWeekNumb = 8;
+										break;
+										}
+								else {break;}
                   }// for days
               }  // for weeks
           }// if first dayy of the month is a saturday
@@ -187,7 +194,13 @@ var countingDays = function()
                             {}else if((currentMonths === 3 || currentMonths === 5 || currentMonths === 8 || currentMonths === 10) && days <= 30)// alse months with 30 days
                               {}else if((currentMonths === 1 && (year % 4)=== 0) &&  days <=29) // Feb with 29 days every 4 years
                                  {}else if((currentMonths === 1 && (year % 4)> 0) &&  days <=28)// Feb with 28 days other years
-                                     {}else {break;} 
+                                     {}else if ((currentMonths === 1 && (year % 4)=== 0) &&  days === 30 && daysOfTheweek === 6)
+									{
+										daysOfTheweek=8; 
+										tempWeekNumb = 8;
+										break;
+										}
+									 else {break;} 
                          
                      }  // for days of week
 
