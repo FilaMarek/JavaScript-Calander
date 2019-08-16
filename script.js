@@ -19,33 +19,46 @@ var setUpDate = function () /// function on load
 { 
     monthTranslator();  
     countingDays();
+	monthSetup();
 }
 var nextMonth = function() // button next month
 {
     eraseHTML();
     if (Months < 11)// if Month is not December
     {
-    Months = Months + 1;
+		//tempMonths++;
+		Months++;
+		tempMonths++;
+		dateobj =  new Date(tempMonths  +" " + 1 + " " + year)
         monthTranslator();
 // function that will add months and re assign the date obj
         monthSetup(); 
     }
-    else {
+    else if (Months === 11) {
         Months = 0;
-        year = year + 1;
+		tempMonths=1;
+        year++;
         monthTranslator();
+		dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
+		monthSetup(); 
     }
+	return {dateobj};
 };
 
 var lastMonth = function()// button previouse month
 {
+	eraseHTML();
     if (Months > 0)// if Month is not Jan.
     {
-    Months = Months - 1;
+		Months = Months - 1;
+		tempMonths--;
         monthTranslator();
+		dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
+		monthSetup(); 
     }
-    else {
+    else if(Months === 0) {
         Months = 11;
+		tempMonths = 12;
         year = year - 1;
         monthTranslator();
     }
