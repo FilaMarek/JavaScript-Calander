@@ -60,13 +60,16 @@ var lastMonth = function()// button previouse month
         Months = 11;
 		tempMonths = 12;
         year = year - 1;
+        dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
         monthTranslator();
+        monthSetup(); 
     }
 };
 
 
 
 
+// ----------------------------------------------------------FULL MONTH PREVIEW
 
 // translates month number to word and puts it in the calander
 var monthTranslator = function()
@@ -146,11 +149,7 @@ var countingDays = function()
       days= dateobj.getDate();
       currentMonths= dateobj.getMonth();
       daysOfTheweek= dateobj.getDay();
-      //console.log(year);
-      //console.log("day of the month "+days);// what day of the month ex 29th
-      //console.log("current month number "+currentMonths);// 0 to January 11 to December
-     // console.log("what days of  week "+daysOfTheweek);// first day of 2000 is na 1st Saturday
-     
+      
       if(daysOfTheweek ===6)
           {
               
@@ -161,9 +160,9 @@ var countingDays = function()
               for(tempWeekNumb;tempWeekNumb<7;tempWeekNumb++){
               for(daysOfTheweek=0;daysOfTheweek<=6;daysOfTheweek++)
                   {
-                  
-                    document.getElementById("tableTop"+ tempWeekNumb/*week*/+"-"+daysOfTheweek/*day*/).innerHTML = days;  
-                     days++; 
+                       document.getElementById("tableTop"+ tempWeekNumb/*week*/+"-"+daysOfTheweek/*day*/).innerHTML = days;  
+                       days++;
+
                       if((currentMonths === 0 || currentMonths === 2 || currentMonths === 4 || currentMonths === 6 || currentMonths === 7 || currentMonths === 9 || currentMonths === 11) && days <= 31)
                         {}else if((currentMonths === 3 || currentMonths === 5 || currentMonths === 8 || currentMonths === 10) && days <= 30)
                           {}else if(((currentMonths === 1 && (year % 4)=== 0) &&  days <=29) && daysOfTheweek != 6) // Feb with 29 days every 4 years
@@ -184,12 +183,26 @@ var countingDays = function()
                      for(daysOfTheweek;daysOfTheweek<=6;daysOfTheweek++){
                          
                         document.getElementById("tableTop"+ tempWeekNumb/*week*/+"-"+daysOfTheweek/*day*/).innerHTML = days;  
-                         days++;
+                        days++;
+                         
+                         // check if days of the week is 6 and if las day is 30th
+                         
+                                                  
+                            if(daysOfTheweek === 6 && days === 31)
+                                {
+                                    daysOfTheweek = 0;
+                                    tempWeekNumb++;
+                                    document.getElementById("tableTop"+ tempWeekNumb/*week*/+"-"+daysOfTheweek/*day*/).innerHTML = days; 
+                                    tempWeekNumb = 8;
+                                    daysOfTheweek = 8;
+                                }
+                         
                             if(daysOfTheweek === 6)
                                 {
                                     daysOfTheweek = 0;
                                     break;
                                 }
+                         
                          if((currentMonths === 0 || currentMonths === 2 || currentMonths === 4 || currentMonths === 6 || currentMonths === 7 || currentMonths === 9 || currentMonths === 11) && days <= 31)// all months with 31 days
                             {}else if((currentMonths === 3 || currentMonths === 5 || currentMonths === 8 || currentMonths === 10) && days <= 30)// alse months with 30 days
                               {}else if((currentMonths === 1 && (year % 4)=== 0) &&  days <=29) // Feb with 29 days every 4 years
@@ -225,3 +238,8 @@ var eraseHTML = function()
                   }// for days
               }  // for weeks
 }
+
+
+// ----------------------------------------------------------END OF FULL MONTH PREVIEW
+
+
