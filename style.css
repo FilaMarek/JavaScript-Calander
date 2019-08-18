@@ -102,26 +102,68 @@ td{
 
 /*_____________________________ buttons________________________________________ */
 
-.prvMnth{
-    float: left;
+
+#button
+{
+    
     border: none;
     text-align: center;
     text-decoration: none;
-    background-color: #D4D4D4;/*green*/
-    border-radius: 2px; 
+    background-color: #D4D4D4;
+    border-radius: 2px;  
+    
+}
 
+.button
+{
+    
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    background-color: #D4D4D4;
+    border-radius: 2px;  
+    
+}
+
+
+
+.prvMnth{
+    float: left;
 }
 
 
 .nxtMnt{
     float: right;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    background-color: #D4D4D4;/*grey*/
-    border-radius: 2px; 
 
 }
+
+/* day bttons */
+
+
+.nxtDay{
+ float: right;
+}
+
+.prvDay{
+float: left;
+}
+
+
+
+
+/* changing style of buttons */
+
+#button:hover {
+    background-color: #474747;
+    color: white;
+}
+
+#button:active {
+  background-color: #474747;
+  transform: translatey(4px);
+
+}
+
 
 
 .button:hover {
@@ -135,7 +177,55 @@ td{
 
 }
 
+
+
+#buttonDay
+{
     
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    background-color: #D4D4D4;
+    border-radius: 2px;  
+    
+}
+
+
+#buttonMonth
+{
+    
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    background-color: #D4D4D4;
+    border-radius: 2px;  
+    
+}
+
+
+
+
+/* additional buttons */
+
+.monthLayOut{
+    position:relative; 
+    left: 80px;
+    right: 80px;
+}
+
+.weekLayOut{
+    position:relative;
+    left: 90px;
+}
+
+.dayLayOut{
+    position:relative;
+    left: 100px; 
+}
+
+/*_____________________________Screen scaling________________________________________ */
+
+
  @media only screen and (max-width: 1500px)
             {
                 #top, #left, #right

@@ -22,8 +22,16 @@ normalize.min.css" rel="stylesheet" />
 	<div id="right">        <!-- ----------------------------------------- Calendar--------------------------------- -->
 		<div id="calander">
 			<div id="calHead">
-                <button onclick="lastMonth()" class="button prvMnth">Previouse month</button>
-                <button onclick="nextMonth()" class="button nxtMnt">Next Month</button>
+                <!-- Buttons -->
+                <button onclick="lastMonth()" id="buttonPrvMonth" class="button prvMnth">Previouse month</button>
+                <button onclick="nextMonth()" id="buttonNxtMonth" class="button nxtMnt">Next Month</button> 
+                <button onclick="MonthLayout()" id="Month" class="button monthLayOut">Month</button>
+                <button onclick="" id="week" class="button weekLayOut">Week</button>
+                <button onclick="dayLayOut()" id="day" class="button dayLayOut">Day</button>
+                <button onclick="" id="buttonNxtDay" class="button nxtDay">Next Day</button>
+                <button onclick="" id="buttonPrvDay" class="button prvDay">Previouse Day</button>
+                
+                <!-- Buttons -->
 				<h2 id="Months"></h2>
                     <table>
                   <tr>
@@ -257,7 +265,7 @@ normalize.min.css" rel="stylesheet" />
                       </td>                   
                         </tr>
                 </table>
-				</div><!-- end of  calendar head div -->
+        </div><!-- end of  calendar head div -->
 		</div> <!-- end of  calander div -->
 		</div> <!-- end of  right div -->
 		 <script src="script.js"></script>

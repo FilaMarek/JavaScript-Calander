@@ -1,6 +1,10 @@
 
 // UI calander
 
+
+
+// Variables
+
 var currentMonths = new Date().getMonth();// what month it is
 var Months = currentMonths;
 var year =  new Date().getFullYear();
@@ -8,11 +12,13 @@ var days = new Date().getDate();//day of the month ex 11
 var daysOfTheweek = new Date().getDay(); // days of the week ex 6 === sat
 var weekNumber = 0;
 var tempMonths = Months +1;
-
 var dateobj =  new Date(tempMonths  +" " + 1 + " " + year)
 
 
 
+
+
+//-------------------------------Buttons-------------------------
 
 
 var setUpDate = function () /// function on load
@@ -20,6 +26,10 @@ var setUpDate = function () /// function on load
     monthTranslator();  
     countingDays();
 	monthSetup();
+    hideDayButtons();
+    
+    
+    
 }
 var nextMonth = function() // button next month
 {
@@ -68,8 +78,118 @@ var lastMonth = function()// button previouse month
 
 
 
+var dayLayOut = function()
+{
+    dayHTMLchanger();
+    dayButtons();
+    hideMonthButtons();
 
-// ----------------------------------------------------------FULL MONTH PREVIEW
+}
+
+
+var MonthLayout = function()
+{
+    dayHTMLchanger();
+    ShowMonthButtons();
+    hideDayButtons();
+    monthTranslator();
+
+}
+
+
+
+
+//-------------------------------- Full Day Layout--------------------
+
+
+var dayHTMLchanger = function()
+{
+    var firstDay = 1;
+    
+           switch (Months) {
+    case 0:
+    document.getElementById("Months").innerHTML = "January " + firstDay;
+    break;
+    case 1:
+    document.getElementById("Months").innerHTML = "Feburary " + firstDay;
+    break;
+    case 2:
+    document.getElementById("Months").innerHTML = "March " + firstDay;
+    break;
+    case 3:
+    document.getElementById("Months").innerHTML = "April " + firstDay;
+    break;
+    case 4:
+    document.getElementById("Months").innerHTML = "May " + firstDay;
+    break;
+    case 5:
+    document.getElementById("Months").innerHTML = "June " + firstDay;
+    break;
+    case 6:
+    document.getElementById("Months").innerHTML = "July " + firstDay;
+    break;
+    case 7:
+    document.getElementById("Months").innerHTML = "August " + firstDay;
+    break;
+    case 8:
+    document.getElementById("Months").innerHTML = "September " + firstDay;
+    break;
+    case 9:
+    document.getElementById("Months").innerHTML = "October " + firstDay;
+    break;
+    case 10:
+    document.getElementById("Months").innerHTML = "November " + firstDay;
+    break;
+    case 11:
+    document.getElementById("Months").innerHTML = "December " + firstDay;
+        } 
+    
+    
+}
+
+
+
+
+// hide and show buttons
+
+
+
+
+// months
+var hideMonthButtons = function()
+{
+   document.getElementById('buttonNxtMonth').style.display = "none";
+   document.getElementById('buttonPrvMonth').style.display = "none";
+    
+}
+
+
+var ShowMonthButtons = function()
+{
+   document.getElementById('buttonNxtMonth').style.display = "block";
+   document.getElementById('buttonPrvMonth').style.display = "block";
+    
+}
+
+
+
+// day buttons
+
+var hideDayButtons = function()
+{
+   document.getElementById('buttonNxtDay').style.display = "none";
+   document.getElementById('buttonPrvDay').style.display = "none";
+    
+}
+
+var dayButtons = function()
+{
+   document.getElementById('buttonNxtDay').style.display = "block";
+   document.getElementById('buttonPrvDay').style.display = "block";
+}
+
+
+// ----------------------------------------------------------FULL MONTH PREVIEW---------------------------------
 
 // translates month number to word and puts it in the calander
 var monthTranslator = function()
