@@ -158,16 +158,18 @@ var dayHTMLchanger = function()
 // months
 var hideMonthButtons = function()
 {
-   document.getElementById('buttonNxtMonth').style.display = "none";
-   document.getElementById('buttonPrvMonth').style.display = "none";
+   document.getElementById('buttonNxtMonth').style.display = "none";// hides button next
+   document.getElementById('buttonPrvMonth').style.display = "none";// hides button previouse
+   document.getElementsByTagName('table')[0].style.display = "none";// hides whole table
     
 }
 
 
 var ShowMonthButtons = function()
 {
-   document.getElementById('buttonNxtMonth').style.display = "block";
-   document.getElementById('buttonPrvMonth').style.display = "block";
+    document.getElementById('buttonNxtMonth').style.display = "block";// hides button next
+    document.getElementById('buttonPrvMonth').style.display = "block";// hides button previouse
+    document.getElementsByTagName('table')[0].style.display = "block";// shows whole table
     
 }
 
@@ -177,15 +179,17 @@ var ShowMonthButtons = function()
 
 var hideDayButtons = function()
 {
-   document.getElementById('buttonNxtDay').style.display = "none";
-   document.getElementById('buttonPrvDay').style.display = "none";
+    document.getElementById('buttonNxtDay').style.display = "none";// hides button next
+    document.getElementById('buttonPrvDay').style.display = "none";// hides button previouse
+    document.getElementsByTagName('table')[1].style.display = "none";// hides whole table
     
 }
 
 var dayButtons = function()
 {
-   document.getElementById('buttonNxtDay').style.display = "block";
-   document.getElementById('buttonPrvDay').style.display = "block";
+    document.getElementById('buttonNxtDay').style.display = "block";
+    document.getElementById('buttonPrvDay').style.display = "block";
+    document.getElementsByTagName('table')[1].style.display = "block";// hides whole table
 }
 
 

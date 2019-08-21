@@ -100,6 +100,31 @@ td{
 
 
 
+/*-----------------------------days css-------------------------------*/
+
+#tableHours{
+
+width: 10%; 
+    
+
+}
+
+#dayScheduler{
+
+width: 500px;    
+    
+
+}
+
+#dayPlanner{
+
+   overflow-y:scroll;
+   height:85%;
+   display:none;
+
+}
+
+
 /*_____________________________ buttons________________________________________ */
 
 
