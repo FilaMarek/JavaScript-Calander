@@ -16,20 +16,20 @@ normalize.min.css" rel="stylesheet" />
 		</header>
 	<div id="left">
 		<h1>Clean JavaScript Calendar</h1>
-		<p>this is a Java script calendar just to practice my JS knowledge, I am aware that there are many different ways to create this, but i wanted to practice
-		case scenarios and if/then statements. Feel Free to take the code from github and use it to you personel needs/ tranings. <p>
+		<p>This is a Java script calendar just to practice my JS knowledge, I am aware that there are many different ways to create this, but I wanted to practice
+		case scenarios and if/then statements. Feel free to take the code from github and use it to you personel needs/ tranings. <p>
 		</div>
 	<div id="right">        <!-- ----------------------------------------- Calendar--------------------------------- -->
 		<div id="calander">
 			<div id="calHead">
                 <!-- Buttons -->
-                <button onclick="lastMonth()" id="buttonPrvMonth" class="button prvMnth">Previouse month</button>
+                <button onclick="lastMonth()" id="buttonPrvMonth" class="button prvMnth">Previous month</button>
                 <button onclick="nextMonth()" id="buttonNxtMonth" class="button nxtMnt">Next Month</button> 
                 <button onclick="MonthLayout()" id="Month" class="button monthLayOut">Month</button>
                 <button onclick="" id="week" class="button weekLayOut">Week</button>
                 <button onclick="dayLayOut()" id="day" class="button dayLayOut">Day</button>
-                <button onclick="" id="buttonNxtDay" class="button nxtDay">Next Day</button>
-                <button onclick="" id="buttonPrvDay" class="button prvDay">Previouse Day</button>
+                <button onclick="nxtDay()" id="buttonNxtDay" class="button nxtDay">Next Day</button>
+                <button onclick="prvDay()" id="buttonPrvDay" class="button prvDay">Previous Day</button>
                 
                 <!-- Buttons -->
                 
@@ -279,154 +279,202 @@ normalize.min.css" rel="stylesheet" />
         <!-- hours calander -->
             <table id ="dayPlanner">
     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">00:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">00:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">01:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">01:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">02:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">02:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">03:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">03:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">04:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">04:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">05:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">05:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">06:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">06:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">07:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">07:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">08:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">08:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">09:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">09:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">10:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">10:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">11:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">11:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">12:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">12:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">13:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">13:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">14:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">14:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                                    <tr>
+    <th id = "tableHours">15:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">15:30</th>
+    <th id = "daySchedulerHalf"></th>
+                </tr>                
+                    <tr>
+    <th id = "tableHours">16:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">16:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">17:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">17:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">18:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">18:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">19:00</th>
+    <th id = "dayScheduler"></th>
+    </tr>
+                             <tr>
+    <th id = "tableHours">19:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">20:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">20:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">21:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
+    <th id = "tableHours">21:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">22:00</th>
+    <th id = "dayScheduler"></th>
+    </tr>
+                     <tr>
+    <th id = "tableHours">22:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>
+                    <tr>
+    <th id = "tableHours">23:00</th>
     <th id = "dayScheduler"></th>
     </tr>
                     <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-                    <tr>
-    <th id = "tableHours">hours</th>
-    <th id = "dayScheduler"></th>
-    </tr>
-    </table>
-        
-        
-        
-        
+    <th id = "tableHours">23:30</th>
+    <th id = "daySchedulerHalf"></th>
+    </tr>         
+    </table> <!-- end of  day layout-->
+            
+            
+            
+            
 		</div> <!-- end of  calander div -->
 		</div> <!-- end of  right div -->
     <!-- days -->

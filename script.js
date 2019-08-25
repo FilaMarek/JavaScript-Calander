@@ -13,8 +13,9 @@ var daysOfTheweek = new Date().getDay(); // days of the week ex 6 === sat
 var weekNumber = 0;
 var tempMonths = Months +1;
 var dateobj =  new Date(tempMonths  +" " + 1 + " " + year)
-
-
+var tempDay = 1;
+var tempMonths = Months + 1;
+var tempYear = year;
 
 
 
@@ -80,6 +81,7 @@ var lastMonth = function()// button previouse month
 
 var dayLayOut = function()
 {
+    tempYear = year;
     dayHTMLchanger();
     dayButtons();
     hideMonthButtons();
@@ -89,12 +91,182 @@ var dayLayOut = function()
 
 var MonthLayout = function()
 {
+    year = tempYear
     dayHTMLchanger();
     ShowMonthButtons();
     hideDayButtons();
     monthTranslator();
 
 }
+
+//----------------------------------------------- next day function ------------------------------
+var nxtDay = function() 
+{
+
+     tempDay++;
+    
+    if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10|| tempMonths === 12) && tempDay < 31 )
+        {
+       dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+       dayHTMLchanger();
+        }
+    else if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 8 || tempMonths === 10) && tempDay === 31 )
+        {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+        tempDay = 0;
+        tempMonths++;   
+         } 
+    else if (tempMonths === 7  && tempDay === 31 )
+        {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+        tempDay = 0;
+        tempMonths++;
+        }
+    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay < 30)
+        {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+        } 
+    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay === 30)
+        {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+        tempDay = 0;
+        tempMonths++;
+        } 
+    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay < 29) // Feb with 29 days every 4 years
+        {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
+        dayHTMLchanger();
+        }
+    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay === 29) // Feb with 29 days every 4 years
+        {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
+        dayHTMLchanger();
+        tempDay = 0;
+        tempMonths++;
+        }
+    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay <28)// Feb with 28 days other years
+        {   
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
+        dayHTMLchanger();
+        }
+    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay === 28)// Feb with 28 days other years
+        {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+        tempDay = 0;
+        tempMonths++;
+        } 
+    else if (tempMonths === 12 &&  tempDay === 31)
+        {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)
+        dayHTMLchanger();
+        tempDay = 0;
+        tempMonths=1;
+        tempYear++;
+        }    
+}
+
+
+//----------------------------------------------- prv day function ------------------------------
+var prvDay = function()
+{
+
+     tempDay--;
+    
+    if (( tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay < 1 ){ // if month has 31 days and it is 1st day
+
+        tempMonths--;
+        tempDay = 30;
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+    }else if ((tempMonths === 0 || tempMonths === 4 || tempMonths === 6 || tempMonths === 7 || tempMonths === 9 || tempMonths === 11) && tempDay >= 1 )//if month has 31 days and it is not 1st day
+    {
+      dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+      dayHTMLchanger();
+    }
+    else if((tempMonths === 3 || tempMonths === 1 || tempMonths === 5 || tempMonths === 8 || tempMonths === 7 || tempMonths === 10) && tempDay < 1)
+    {
+        tempMonths--;
+        tempDay = 31;
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+    }
+    else if((tempMonths === 3 || tempMonths === 1 || tempMonths === 5 || tempMonths === 8 || tempMonths === 10) && tempDay >= 1)
+    {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+    } 
+    
+    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay >= 1) // Feb with 29 days every 4 years
+    {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+    }
+    
+    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay >= 1) // Feb with 29 days every 4 years
+    {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+    }
+    
+    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay < 1) // Feb with 29 days every 4 years
+    {
+        tempMonths--;
+        tempDay = 29;
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
+        dayHTMLchanger();
+    }
+    
+    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay < 1)// Feb with 28 days other years
+    {
+        tempMonths--;
+        tempDay = 28;
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
+        dayHTMLchanger();
+    }
+    
+    
+    else if (tempMonths === 0 && tempDay < 1 )
+         {
+            tempDay = 31;
+            tempMonths = 11;
+            tempYear--;
+            dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)
+            dayHTMLchanger();
+
+         }    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -106,46 +278,52 @@ var dayHTMLchanger = function()
 {
     var firstDay = 1;
     
-           switch (Months) {
-    case 0:
-    document.getElementById("Months").innerHTML = "January " + firstDay;
-    break;
+           switch (tempMonths) {
     case 1:
-    document.getElementById("Months").innerHTML = "Feburary " + firstDay;
+    document.getElementById("Months").innerHTML = "January " + tempDay;
     break;
     case 2:
-    document.getElementById("Months").innerHTML = "March " + firstDay;
+    document.getElementById("Months").innerHTML = "Feburary " + tempDay;
     break;
     case 3:
-    document.getElementById("Months").innerHTML = "April " + firstDay;
+    document.getElementById("Months").innerHTML = "March " + tempDay;
     break;
     case 4:
-    document.getElementById("Months").innerHTML = "May " + firstDay;
+    document.getElementById("Months").innerHTML = "April " + tempDay;
     break;
     case 5:
-    document.getElementById("Months").innerHTML = "June " + firstDay;
+    document.getElementById("Months").innerHTML = "May " + tempDay;
     break;
     case 6:
-    document.getElementById("Months").innerHTML = "July " + firstDay;
+    document.getElementById("Months").innerHTML = "June " + tempDay;
     break;
     case 7:
-    document.getElementById("Months").innerHTML = "August " + firstDay;
+    document.getElementById("Months").innerHTML = "July " + tempDay;
     break;
     case 8:
-    document.getElementById("Months").innerHTML = "September " + firstDay;
+    document.getElementById("Months").innerHTML = "August " + tempDay;
     break;
     case 9:
-    document.getElementById("Months").innerHTML = "October " + firstDay;
+    document.getElementById("Months").innerHTML = "September " + tempDay;
     break;
     case 10:
-    document.getElementById("Months").innerHTML = "November " + firstDay;
+    document.getElementById("Months").innerHTML = "October " + tempDay;
     break;
     case 11:
-    document.getElementById("Months").innerHTML = "December " + firstDay;
+    document.getElementById("Months").innerHTML = "November " + tempDay;
+    break;
+    case 12:
+    document.getElementById("Months").innerHTML = "December " + tempDay;
         } 
     
     
 }
+
+
+
+
+
+
 
 
 
