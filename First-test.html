@@ -23,10 +23,15 @@ normalize.min.css" rel="stylesheet" />
 		<div id="calander">
 			<div id="calHead">
                 <!-- Buttons -->
+                <!-- month-->
                 <button onclick="lastMonth()" id="buttonPrvMonth" class="button prvMnth">Previous month</button>
                 <button onclick="nextMonth()" id="buttonNxtMonth" class="button nxtMnt">Next Month</button> 
                 <button onclick="MonthLayout()" id="Month" class="button monthLayOut">Month</button>
-                <button onclick="" id="week" class="button weekLayOut">Week</button>
+                <!-- week -->
+                <button onclick="weekLayout()" id="week" class="button weekLayOut">Week</button>
+                <button onclick="" id="buttonNxtWeek" class="button nxtWeek">Next Week</button>
+                <button onclick="" id="buttonPrvWeek" class="button prvWeek">Previous Week</button>
+                <!--Day-->
                 <button onclick="dayLayOut()" id="day" class="button dayLayOut">Day</button>
                 <button onclick="nxtDay()" id="buttonNxtDay" class="button nxtDay">Next Day</button>
                 <button onclick="prvDay()" id="buttonPrvDay" class="button prvDay">Previous Day</button>
@@ -50,7 +55,7 @@ normalize.min.css" rel="stylesheet" />
                 <th id ="Sat">Sat</th>
                   </tr>
                   <tr>
-                    <td>                       <!-- week 1 SUN -->
+                    <td id = "Sunday">                       <!-- week 1 SUN -->
                     <div id="tableTop1-0" class = "tableTop"></div>
                 <div id="tableMiddle"></div>
                     <div id="tableButtom"></div>
@@ -87,7 +92,7 @@ normalize.min.css" rel="stylesheet" />
                       </td>
                   </tr>
                   <tr>
-                    <td>                         <!-- week 2 SUN -->
+                    <td id = "Sunday">                        <!-- week 2 SUN -->
                     <div id="tableTop2-0" class = "tableTop"></div>
                 <div id="tableMiddle"></div>
                 <div id="tableButtom"></div>
@@ -124,7 +129,7 @@ normalize.min.css" rel="stylesheet" />
                       </td>
                   </tr>
                   <tr>   
-                 <td>                        <!-- week 3 SUN -->
+                 <td id = "Sunday">                        <!-- week 3 SUN -->
                     <div id="tableTop3-0" class = "tableTop"></div>
                 <div id="tableMiddle"></div>
                 <div id="tableButtom"></div>
@@ -161,7 +166,7 @@ normalize.min.css" rel="stylesheet" />
                       </td>
                   </tr>
                   <tr>    
-                <td id ="4Sun">                          <!-- week 4 SUN -->
+                <td id = "Sunday">                         <!-- week 4 SUN -->
                     <div id="tableTop4-0" class = "tableTop"></div>
                 <div id="tableMiddle"></div>
                 <div id="tableButtom"></div>
@@ -198,7 +203,7 @@ normalize.min.css" rel="stylesheet" />
                       </td>
                   </tr>
                   <tr>  
-                <td id ="5Sun">                             <!-- week 5 SUN -->
+                <td id = "Sunday">                            <!-- week 5 SUN -->
                     <div id="tableTop5-0" class = "tableTop"></div>
                 <div id="tableMiddle"></div>
                 <div id="tableButtom"></div>
@@ -234,7 +239,7 @@ normalize.min.css" rel="stylesheet" />
                 <div id="tableButtom"></div>
                       </td>
                   </tr>
-                <td id ="5Sun">                             <!-- week 5 SUN -->
+                <td id = "Sunday">                             <!-- week 5 SUN -->
                     <div id="tableTop6-0" class = "tableTop"></div>
                 <div id="tableMiddle"></div>
                 <div id="tableButtom"></div>

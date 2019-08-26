@@ -16,6 +16,7 @@ var dateobj =  new Date(tempMonths  +" " + 1 + " " + year)
 var tempDay = 1;
 var tempMonths = Months + 1;
 var tempYear = year;
+var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
 
 
 
@@ -28,6 +29,7 @@ var setUpDate = function () /// function on load
     countingDays();
 	monthSetup();
     hideDayButtons();
+    hideWeekButtons();
     
     
     
@@ -81,6 +83,7 @@ var lastMonth = function()// button previouse month
 
 var dayLayOut = function()
 {
+    currentCalMode = 2;
     tempYear = year;
     dayHTMLchanger();
     dayButtons();
@@ -91,6 +94,7 @@ var dayLayOut = function()
 
 var MonthLayout = function()
 {
+    currentCalMode = 0;
     year = tempYear
     dayHTMLchanger();
     ShowMonthButtons();
@@ -98,6 +102,17 @@ var MonthLayout = function()
     monthTranslator();
 
 }
+
+
+var WeekLayout =function()
+{
+    currentCalMode = 1;
+    // I need a Var that tells me what mode we are in is it week/Month/ or day
+    
+}
+
+
+
 
 //----------------------------------------------- next day function ------------------------------
 var nxtDay = function() 
@@ -176,44 +191,25 @@ var prvDay = function()
 {
 
      tempDay--;
-    
-    if (( tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay < 1 ){ // if month has 31 days and it is 1st day
+     // adding 30 days to a month  
+    if (( tempMonths === 2 || tempMonths === 5 || tempMonths === 7 || tempMonths === 10 || tempMonths === 12) && tempDay < 1 )
+    { // if month has 31 days and it is 1st day
 
         tempMonths--;
         tempDay = 30;
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
-    }else if ((tempMonths === 0 || tempMonths === 4 || tempMonths === 6 || tempMonths === 7 || tempMonths === 9 || tempMonths === 11) && tempDay >= 1 )//if month has 31 days and it is not 1st day
-    {
-      dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
-      dayHTMLchanger();
     }
-    else if((tempMonths === 3 || tempMonths === 1 || tempMonths === 5 || tempMonths === 8 || tempMonths === 7 || tempMonths === 10) && tempDay < 1)
+  // adding 31 days to a month  
+    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 8 || tempMonths === 9 || tempMonths === 11) && tempDay < 1)
     {
         tempMonths--;
         tempDay = 31;
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
     }
-    else if((tempMonths === 3 || tempMonths === 1 || tempMonths === 5 || tempMonths === 8 || tempMonths === 10) && tempDay >= 1)
-    {
-        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
-        dayHTMLchanger();
-    } 
-    
-    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay >= 1) // Feb with 29 days every 4 years
-    {
-        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
-        dayHTMLchanger();
-    }
-    
-    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay >= 1) // Feb with 29 days every 4 years
-    {
-        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
-        dayHTMLchanger();
-    }
-    
-    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay < 1) // Feb with 29 days every 4 years
+    // Feb month 28 and 29 days
+    else if((tempMonths === 3 && (tempYear % 4)=== 0) &&  tempDay < 1) // Feb with 29 days every 4 years
     {
         tempMonths--;
         tempDay = 29;
@@ -221,55 +217,30 @@ var prvDay = function()
         dayHTMLchanger();
     }
     
-    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay < 1)// Feb with 28 days other years
+    else if((tempMonths === 3 && (tempYear % 4)> 0) &&  tempDay < 1)// Feb with 28 days other years
     {
         tempMonths--;
         tempDay = 28;
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
         dayHTMLchanger();
     }
-    
-    
-    else if (tempMonths === 0 && tempDay < 1 )
+    else if (tempMonths === 1 && tempDay < 1 )
          {
             tempDay = 31;
-            tempMonths = 11;
+            tempMonths = 12;
             tempYear--;
             dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)
             dayHTMLchanger();
 
-         }    
+         }  
+        else 
+    {
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
+    }
+    
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------- Full Day Layout--------------------
 
@@ -320,16 +291,7 @@ var dayHTMLchanger = function()
 }
 
 
-
-
-
-
-
-
-
-
 // hide and show buttons
-
 
 
 
@@ -348,6 +310,7 @@ var ShowMonthButtons = function()
     document.getElementById('buttonNxtMonth').style.display = "block";// hides button next
     document.getElementById('buttonPrvMonth').style.display = "block";// hides button previouse
     document.getElementsByTagName('table')[0].style.display = "block";// shows whole table
+    Months = tempMonths -1;
     
 }
 
@@ -368,6 +331,24 @@ var dayButtons = function()
     document.getElementById('buttonNxtDay').style.display = "block";
     document.getElementById('buttonPrvDay').style.display = "block";
     document.getElementsByTagName('table')[1].style.display = "block";// hides whole table
+    tempMonths = Months + 1;
+}
+
+
+var hideWeekButtons = function()
+{
+    document.getElementById('buttonNxtWeek').style.display = "none";// hides button next
+    document.getElementById('buttonPrvWeek').style.display = "none";// hides button previouse
+    //document.getElementsByTagName('table')[2].style.display = "none";// hides whole table
+    
+}
+
+var showWeekButtons = function()
+{
+    document.getElementById('buttonNxtWeek').style.display = "block";// hides button next
+    document.getElementById('buttonPrvWeek').style.display = "block";// hides button previouse
+    //document.getElementsByTagName('table')[2].style.display = "block";// hides whole table
+    
 }
 
 
@@ -506,8 +487,14 @@ var countingDays = function()
                                 }
                          
                          if((currentMonths === 0 || currentMonths === 2 || currentMonths === 4 || currentMonths === 6 || currentMonths === 7 || currentMonths === 9 || currentMonths === 11) && days <= 31)// all months with 31 days
-                            {}else if((currentMonths === 3 || currentMonths === 5 || currentMonths === 8 || currentMonths === 10) && days <= 30)// alse months with 30 days
-                              {}else if((currentMonths === 1 && (year % 4)=== 0) &&  days <=29) // Feb with 29 days every 4 years
+                            {}else if((currentMonths === 3 || currentMonths === 5 || currentMonths === 8 || currentMonths === 10) && days < 30)//  months with 30 days
+                            {}else if((currentMonths === 3 || currentMonths === 5 || currentMonths === 8 || currentMonths === 10) && days === 30)//  months with 30 days
+                            {
+                                document.getElementById("tableTop"+ tempWeekNumb/*week*/+"-"+daysOfTheweek/*day*/).innerHTML = days;
+                                    tempWeekNumb = 8;
+                                    daysOfTheweek = 8;
+                                
+                            }else if((currentMonths === 1 && (year % 4)=== 0) &&  days <=29) // Feb with 29 days every 4 years
                                  {}else if((currentMonths === 1 && (year % 4)> 0) &&  days <=28)// Feb with 28 days other years
                                      {}else if ((currentMonths === 1 && (year % 4)=== 0) &&  days === 30 && daysOfTheweek === 6)
 									{
