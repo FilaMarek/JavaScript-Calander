@@ -521,6 +521,24 @@ var countingDays = function()
   };// end of function calander
 
 
+var eraseHTML = function()
+{
+    var tempVar = tempWeekNumb =1;
+    var tempVar2 = daysOfTheweek=0;
+
+                  for(tempVar;tempVar<7;tempVar++){
+              for(tempVar2=0;tempVar2<=6;tempVar2++)
+                  {
+
+                    document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML = " ";   
+                  }// for days
+              }  // for weeks
+}
+
+
+
+
+
 // ----------------------------------------------------------END OF FULL MONTH PREVIEW
 
 
