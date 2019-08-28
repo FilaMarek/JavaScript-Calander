@@ -87,7 +87,8 @@ var dayLayOut = function()
     tempYear = year;
     dayHTMLchanger();
     dayButtons();
-    hideMonthButtons();
+    hideMonthButtons();// hides month buttons and Table
+    hideWeekButtons();// hides week buttons and Table
 
 }
 
@@ -98,17 +99,21 @@ var MonthLayout = function()
     year = tempYear
     dayHTMLchanger();
     ShowMonthButtons();
-    hideDayButtons();
+    hideDayButtons();// hides day buttons and Table
+    hideWeekButtons();// hides week buttons and Table
     monthTranslator();
 
 }
 
 
-var WeekLayout =function()
+var weekLayout =function()
 {
     currentCalMode = 1;
+    hideDayButtons();// hides day buttons and Table
+    hideMonthButtons();// hides month buttons and Table
     // I need a Var that tells me what mode we are in is it week/Month/ or day
-    
+    showWeekButtons();
+    //eraseHTML();
 }
 
 
@@ -339,7 +344,7 @@ var hideWeekButtons = function()
 {
     document.getElementById('buttonNxtWeek').style.display = "none";// hides button next
     document.getElementById('buttonPrvWeek').style.display = "none";// hides button previouse
-    //document.getElementsByTagName('table')[2].style.display = "none";// hides whole table
+    document.getElementsByTagName('table')[2].style.display = "none";// hides whole table
     
 }
 
@@ -347,7 +352,7 @@ var showWeekButtons = function()
 {
     document.getElementById('buttonNxtWeek').style.display = "block";// hides button next
     document.getElementById('buttonPrvWeek').style.display = "block";// hides button previouse
-    //document.getElementsByTagName('table')[2].style.display = "block";// hides whole table
+    document.getElementsByTagName('table')[2].style.display = "block";// hides whole table
     
 }
 
@@ -514,23 +519,6 @@ var countingDays = function()
                     
                 }//end of else if
   };// end of function calander
-
-
-
-
-var eraseHTML = function()
-{
-    var tempVar = tempWeekNumb =1;
-    var tempVar2 = daysOfTheweek=0;
-    
-                  for(tempVar;tempVar<7;tempVar++){
-              for(tempVar2=0;tempVar2<=6;tempVar2++)
-                  {
-                  
-                    document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML = " ";   
-                  }// for days
-              }  // for weeks
-}
 
 
 // ----------------------------------------------------------END OF FULL MONTH PREVIEW

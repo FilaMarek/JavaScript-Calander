@@ -39,6 +39,7 @@
 
 #text {
   position: absolute;
+  font-family: 'Acme', sans-serif;
   top: 8px;
   left: 16px;
   color: white;
@@ -174,6 +175,23 @@ width: 500px;
 }
 
 
+
+/*-----------------------------week css-------------------------------*/
+
+#week
+{
+  width: 50px  
+    
+}
+
+#weekPlanner{
+   overflow-y:scroll;
+   height:85%;
+   display:none;
+    
+}
+
+
 /*_____________________________ buttons________________________________________ */
 
 
@@ -210,6 +228,21 @@ width: 500px;
     float: right;
 
 }
+
+/* week bttons */
+
+.nxtWeek{
+    float: right;
+    
+}
+
+.prvWeek{
+    
+   float: left; 
+}
+
+
+
 
 /* day bttons */
 
