@@ -482,6 +482,7 @@ var countingDays = function()
                          
                             if(daysOfTheweek === 6)
                                 {
+ 
                                     daysOfTheweek = 0;
                                     break;
                                 }
@@ -490,9 +491,11 @@ var countingDays = function()
                             {}else if((currentMonths === 3 || currentMonths === 5 || currentMonths === 8 || currentMonths === 10) && days < 30)//  months with 30 days
                             {}else if((currentMonths === 3 || currentMonths === 5 || currentMonths === 8 || currentMonths === 10) && days === 30)//  months with 30 days
                             {
-                                document.getElementById("tableTop"+ tempWeekNumb/*week*/+"-"+daysOfTheweek/*day*/).innerHTML = days;
+                                daysOfTheweek++;
+                                    document.getElementById("tableTop"+ tempWeekNumb/*week*/+"-"+daysOfTheweek/*day*/).innerHTML = days;
                                     tempWeekNumb = 8;
                                     daysOfTheweek = 8;
+                               
                                 
                             }else if((currentMonths === 1 && (year % 4)=== 0) &&  days <=29) // Feb with 29 days every 4 years
                                  {}else if((currentMonths === 1 && (year % 4)> 0) &&  days <=28)// Feb with 28 days other years
@@ -502,7 +505,8 @@ var countingDays = function()
 										tempWeekNumb = 8;
 										break;
 										}
-									 else {break;} 
+                         else{break};
+ 
                          
                      }  // for days of week
 
