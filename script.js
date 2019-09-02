@@ -17,6 +17,8 @@ var tempDay = 1;
 var tempMonths = Months + 1;
 var tempYear = year;
 var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
+var textMonth = " "
+var sixWeektrigger = 0;
 
 
 
@@ -26,14 +28,18 @@ var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
 var setUpDate = function () /// function on load
 { 
     monthTranslator();  
-    countingDays();
+    //countingDays();
 	monthSetup();
     hideDayButtons();
     hideWeekButtons();
+	textMonts();
     
     
     
 }
+//-------------------------------next month-------------------------
+
+
 var nextMonth = function() // button next month
 {
     eraseHTML();
@@ -57,7 +63,7 @@ var nextMonth = function() // button next month
     }
 	return {dateobj};
 };
-
+//-------------------------------last month-------------------------
 var lastMonth = function()// button previouse month
 {
 	eraseHTML();
@@ -79,6 +85,91 @@ var lastMonth = function()// button previouse month
     }
 };
 
+//-------------------------------next week-------------------------
+
+var nxtWeek = function() // function that adds weeks and changes HTML
+{
+	if(weekNumber <5){
+	weekNumber++;
+	tempWeekDay();
+	//console.log(weekNumber)
+	}
+	else
+	{
+		weekNumber = 1;
+		tempMonths++;
+		textMonts();
+		tempWeekDay();
+	}
+	
+	
+}
+
+
+var textMonts = function(){
+
+    switch (tempMonths) {
+    case 1:
+    textMonth = "January ";
+    break;
+    case 2:
+    textMonth = "Feburary ";
+    break;
+    case 3:
+    textMonth = "March ";
+    break;
+    case 4:
+    textMonth = "April ";
+    break;
+    case 5:
+    textMonth = "May ";
+    break;
+    case 6:
+    textMonth = "June ";
+    break;
+    case 7:
+    textMonth = "July ";
+    break;
+    case 8:
+    textMonth = "August ";
+    break;
+    case 9:
+    textMonth = "September ";
+    break;
+    case 10:
+    textMonth = "October ";
+    break;
+    case 11:
+    textMonth = "November ";
+    break;
+    case 12:
+    textMonth = "December ";
+        } 
+}
+
+
+
+var tempWeekDay = function()
+{
+   	
+   if (weekNumber === 1){
+
+	   document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
+   } else if (weekNumber === 2){
+
+       document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
+   }else if (weekNumber === 3){
+
+    	document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
+   }else if (weekNumber === 4){
+
+       document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
+   }else if (weekNumber === 5){
+
+       document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber; 
+   }
+}
+   
 
 
 var dayLayOut = function()
@@ -113,6 +204,7 @@ var weekLayout =function()
     hideMonthButtons();// hides month buttons and Table
     // I need a Var that tells me what mode we are in is it week/Month/ or day
     showWeekButtons();
+	document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
     //eraseHTML();
 }
 
@@ -403,29 +495,6 @@ var monthTranslator = function()
     
 };
 
-
-var countingDays = function()
-{
-
-   if (days <= 7){
-       weekNumber = 1
-   } else if (days >7 && days <= 14){
-       weekNumber =2
-       
-   }else if (days >14 && days <= 21){
-       weekNumber = 3;
-    
-   }else if (days >21 && days <= 28){
-    
-       weekNumber = 4;
-       
-   }else if (days >28 && days <= 31){
-    
-       weekNumber = 5;
-       
-   }
-    
-};
        var nextDays = daysOfTheweek;
        var tempWeekNumb= 1;
 
