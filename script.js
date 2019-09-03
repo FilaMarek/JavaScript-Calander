@@ -17,84 +17,114 @@ var tempDay = 1;
 var tempMonths = Months + 1;
 var tempYear = year;
 var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
+var textMonth = " "
+var numberOfTotalWeeks = 5;
+
 
 
 
 //-------------------------------Buttons-------------------------
-
-
 var setUpDate = function () /// function on load
 { 
     monthTranslator();  
-    countingDays();
+    //countingDays();
 	monthSetup();
     hideDayButtons();
     hideWeekButtons();
-    
-    
-    
+	textMonths();
 }
-var nextMonth = function() // button next month
+
+var textMonths = function(){
+
+    switch (tempMonths) {
+    case 1:
+    textMonth = "January ";
+    break;
+    case 2:
+    textMonth = "Feburary ";
+    break;
+    case 3:
+    textMonth = "March ";
+    break;
+    case 4:
+    textMonth = "April ";
+    break;
+    case 5:
+    textMonth = "May ";
+    break;
+    case 6:
+    textMonth = "June ";
+    break;
+    case 7:
+    textMonth = "July ";
+    break;
+    case 8:
+    textMonth = "August ";
+    break;
+    case 9:
+    textMonth = "September ";
+    break;
+    case 10:
+    textMonth = "October ";
+    break;
+    case 11:
+    textMonth = "November ";
+    break;
+    case 12:
+    textMonth = "December ";
+        } 
+}
+
+
+
+var tempWeekDay = function()
 {
-    eraseHTML();
-    if (Months < 11)// if Month is not December
-    {
-		//tempMonths++;
-		Months++;
-		tempMonths++;
-		dateobj =  new Date(tempMonths  +" " + 1 + " " + year)
-        monthTranslator();
-// function that will add months and re assign the date obj
-        monthSetup(); 
-    }
-    else if (Months === 11) {
-        Months = 0;
-		tempMonths=1;
-        year++;
-        monthTranslator();
-		dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
-		monthSetup(); 
-    }
-	return {dateobj};
-};
+   	
+   if (weekNumber === 1){
 
-var lastMonth = function()// button previouse month
-{
-	eraseHTML();
-    if (Months > 0)// if Month is not Jan.
-    {
-		Months = Months - 1;
-		tempMonths--;
-        monthTranslator();
-		dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
-		monthSetup(); 
-    }
-    else if(Months === 0) {
-        Months = 11;
-		tempMonths = 12;
-        year = year - 1;
-        dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
-        monthTranslator();
-        monthSetup(); 
-    }
-};
+	   document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
+   } else if (weekNumber === 2){
 
+       document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
+   }else if (weekNumber === 3){
 
+    	document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
+   }else if (weekNumber === 4){
+
+       document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
+   }else if (weekNumber === 5){
+
+       document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber; 
+   }
+   else if (weekNumber === 6){
+
+       document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber; 
+   }
+}
+   
+//-------------------------------day layout-------------------------
 
 var dayLayOut = function()
 {
+	
+	if(currentCalMode !== 2){
+	tempDay = 1;
     currentCalMode = 2;
     tempYear = year;
     dayHTMLchanger();
     dayButtons();
     hideMonthButtons();// hides month buttons and Table
     hideWeekButtons();// hides week buttons and Table
-
+	}
+	else{}
 }
-
+//-------------------------------month layout-------------------------
 
 var MonthLayout = function()
 {
+	
+	if(currentCalMode !== 0){
+	tempDay = 1;
     currentCalMode = 0;
     year = tempYear
     dayHTMLchanger();
@@ -102,21 +132,80 @@ var MonthLayout = function()
     hideDayButtons();// hides day buttons and Table
     hideWeekButtons();// hides week buttons and Table
     monthTranslator();
+	}
+	else{}
 
 }
 
+//-------------------------------week layout-------------------------
+var weekLayout = function()
+{ 
 
-var weekLayout =function()
-{
+	if(currentCalMode !== 1){
+	
+	tempDay = 1;
+	weekNumber = 1;
+	textMonths();
     currentCalMode = 1;
     hideDayButtons();// hides day buttons and Table
     hideMonthButtons();// hides month buttons and Table
     // I need a Var that tells me what mode we are in is it week/Month/ or day
     showWeekButtons();
+	document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
     //eraseHTML();
+	}
+	else{}
 }
 
 
+
+//-------------------------------- Full Day Layout--------------------
+
+
+var dayHTMLchanger = function()
+{
+    var firstDay = 1;
+    
+           switch (tempMonths) {
+    case 1:
+    document.getElementById("Months").innerHTML = "January " + tempDay;
+    break;
+    case 2:
+    document.getElementById("Months").innerHTML = "Feburary " + tempDay;
+    break;
+    case 3:
+    document.getElementById("Months").innerHTML = "March " + tempDay;
+    break;
+    case 4:
+    document.getElementById("Months").innerHTML = "April " + tempDay;
+    break;
+    case 5:
+    document.getElementById("Months").innerHTML = "May " + tempDay;
+    break;
+    case 6:
+    document.getElementById("Months").innerHTML = "June " + tempDay;
+    break;
+    case 7:
+    document.getElementById("Months").innerHTML = "July " + tempDay;
+    break;
+    case 8:
+    document.getElementById("Months").innerHTML = "August " + tempDay;
+    break;
+    case 9:
+    document.getElementById("Months").innerHTML = "September " + tempDay;
+    break;
+    case 10:
+    document.getElementById("Months").innerHTML = "October " + tempDay;
+    break;
+    case 11:
+    document.getElementById("Months").innerHTML = "November " + tempDay;
+    break;
+    case 12:
+    document.getElementById("Months").innerHTML = "December " + tempDay;
+        } 
+    
+    
+}
 
 
 //----------------------------------------------- next day function ------------------------------
@@ -187,7 +276,8 @@ var nxtDay = function()
         tempDay = 0;
         tempMonths=1;
         tempYear++;
-        }    
+        }  
+		
 }
 
 
@@ -197,7 +287,7 @@ var prvDay = function()
 
      tempDay--;
      // adding 30 days to a month  
-    if (( tempMonths === 2 || tempMonths === 5 || tempMonths === 7 || tempMonths === 10 || tempMonths === 12) && tempDay < 1 )
+    if (( tempMonths === 5 || tempMonths === 7 || tempMonths === 10 || tempMonths === 12) && tempDay < 1 )
     { // if month has 31 days and it is 1st day
 
         tempMonths--;
@@ -206,7 +296,7 @@ var prvDay = function()
         dayHTMLchanger();
     }
   // adding 31 days to a month  
-    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 8 || tempMonths === 9 || tempMonths === 11) && tempDay < 1)
+    else if((tempMonths === 2 || tempMonths === 4 || tempMonths === 6 || tempMonths === 8 || tempMonths === 9 || tempMonths === 11) && tempDay < 1)
     {
         tempMonths--;
         tempDay = 31;
@@ -247,53 +337,102 @@ var prvDay = function()
     
 }
 
-//-------------------------------- Full Day Layout--------------------
 
+//-------------------------------next week-------------------------
 
-var dayHTMLchanger = function()
+var nxtWeek = function() // function that adds weeks and changes HTML
 {
-    var firstDay = 1;
-    
-           switch (tempMonths) {
-    case 1:
-    document.getElementById("Months").innerHTML = "January " + tempDay;
-    break;
-    case 2:
-    document.getElementById("Months").innerHTML = "Feburary " + tempDay;
-    break;
-    case 3:
-    document.getElementById("Months").innerHTML = "March " + tempDay;
-    break;
-    case 4:
-    document.getElementById("Months").innerHTML = "April " + tempDay;
-    break;
-    case 5:
-    document.getElementById("Months").innerHTML = "May " + tempDay;
-    break;
-    case 6:
-    document.getElementById("Months").innerHTML = "June " + tempDay;
-    break;
-    case 7:
-    document.getElementById("Months").innerHTML = "July " + tempDay;
-    break;
-    case 8:
-    document.getElementById("Months").innerHTML = "August " + tempDay;
-    break;
-    case 9:
-    document.getElementById("Months").innerHTML = "September " + tempDay;
-    break;
-    case 10:
-    document.getElementById("Months").innerHTML = "October " + tempDay;
-    break;
-    case 11:
-    document.getElementById("Months").innerHTML = "November " + tempDay;
-    break;
-    case 12:
-    document.getElementById("Months").innerHTML = "December " + tempDay;
-        } 
-    
-    
+	
+	if(weekNumber < numberOfTotalWeeks){
+	weekNumber++;
+	tempWeekDay();
+	//console.log(weekNumber)
+	}
+	else
+	{
+		weekNumber = 1;
+		textMonths();
+		tempWeekDay();
+	}
+	
+	
 }
+
+//-------------------------------prv week-------------------------
+
+var prvWeek = function()
+{
+
+	if(weekNumber >1)
+	{
+	weekNumber--;
+	tempWeekDay();
+	}
+	else
+	{
+		weekNumber = numberOfTotalWeeks ;
+		textMonths();
+		tempWeekDay();	
+		
+	}
+	
+	
+	
+	//alert("I do not work yett!")
+	
+}
+
+//-------------------------------next month-------------------------
+
+
+var nextMonth = function() // button next month
+{
+    eraseHTML();
+	numberOfTotalWeeks = 5;
+    if (Months < 11)// if Month is not December
+    {
+		Months++;
+		tempMonths++;
+		dateobj =  new Date(tempMonths  +" " + 1 + " " + year)
+        monthTranslator();
+// function that will add months and re assign the date obj
+        monthSetup(); 
+    }
+    else if (Months === 11) {
+        Months = 0;
+		tempMonths=1;
+        year++;
+        monthTranslator();
+		dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
+		monthSetup(); 
+    }
+	return {dateobj};
+};
+//-------------------------------last month-------------------------
+var lastMonth = function()// button previouse month
+{
+	eraseHTML();
+	numberOfTotalWeeks = 5;
+    if (Months > 0)// if Month is not Jan.
+    {
+		Months = Months - 1;
+		tempMonths--;
+        monthTranslator();
+		dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
+		monthSetup(); 
+    }
+    else if(Months === 0) {
+        Months = 11;
+		tempMonths = 12;
+        year = year - 1;
+        dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
+        monthTranslator();
+        monthSetup(); 
+    }
+};
+
+
+
 
 
 // hide and show buttons
@@ -403,29 +542,6 @@ var monthTranslator = function()
     
 };
 
-
-var countingDays = function()
-{
-
-   if (days <= 7){
-       weekNumber = 1
-   } else if (days >7 && days <= 14){
-       weekNumber =2
-       
-   }else if (days >14 && days <= 21){
-       weekNumber = 3;
-    
-   }else if (days >21 && days <= 28){
-    
-       weekNumber = 4;
-       
-   }else if (days >28 && days <= 31){
-    
-       weekNumber = 5;
-       
-   }
-    
-};
        var nextDays = daysOfTheweek;
        var tempWeekNumb= 1;
 
@@ -437,10 +553,15 @@ var countingDays = function()
       days= dateobj.getDate();
       currentMonths= dateobj.getMonth();
       daysOfTheweek= dateobj.getDay();
-      
+       if(daysOfTheweek ===5 && (tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10|| tempMonths === 12 ))
+	   {
+		  numberOfTotalWeeks = 6
+	   }   
+	   
+	   
       if(daysOfTheweek ===6)
           {
-              
+             numberOfTotalWeeks = 6; 
              document.getElementById("tableTop"+ tempWeekNumb/*week*/+"-"+daysOfTheweek/*day*/).innerHTML = days; 
               
               tempWeekNumb++;
