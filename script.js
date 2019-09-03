@@ -215,7 +215,7 @@ var nxtDay = function()
 	
 	
 	if (tempDay >31)
-	{tempDay 1}
+	{tempDay = 1}
 
     if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10|| tempMonths === 12) && tempDay < 31 )
         {
