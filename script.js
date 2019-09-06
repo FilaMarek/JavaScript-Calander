@@ -214,20 +214,19 @@ var nxtDay = function()
 	     tempDay++;
 	
 	
-	if (tempDay >31)
-	{tempDay = 1}
 
-    if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10|| tempMonths === 12) && tempDay < 31 )
+
+    if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10|| tempMonths === 12) && tempDay <= 31 )
         {
        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
        dayHTMLchanger();
         }
-    else if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 8 || tempMonths === 10) && tempDay === 31 )
+    else if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 8 || tempMonths === 10) && tempDay === 32 )
         {
+        tempDay = 1;
+        tempMonths++;
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
-        dayHTMLchanger();
-        tempDay = 0;
-        tempMonths++;   
+        dayHTMLchanger();		
          } 
     else if (tempMonths === 7  && tempDay === 31 )
         {
@@ -236,41 +235,41 @@ var nxtDay = function()
         tempDay = 0;
         tempMonths++;
         }
-    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay < 30)
+    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay <= 30)
         {
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
         } 
-    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay === 30)
+    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay === 31)
         {
+        tempDay = 1;
+        tempMonths++;
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
-        tempDay = 0;
-        tempMonths++;
         } 
-    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay < 29) // Feb with 29 days every 4 years
+    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay <= 29) // Feb with 29 days every 4 years
         {
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
         dayHTMLchanger();
         }
-    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay === 29) // Feb with 29 days every 4 years
+    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay === 30) // Feb with 29 days every 4 years
         {
-        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
-        dayHTMLchanger();
-        tempDay = 0;
+        tempDay = 1;
         tempMonths++;
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
         }
-    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay <28)// Feb with 28 days other years
+    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay <=28)// Feb with 28 days other years
         {   
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
         dayHTMLchanger();
         }
-    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay === 28)// Feb with 28 days other years
+    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay === 29)// Feb with 28 days other years
         {
+        tempDay = 1;
+        tempMonths++;
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
-        tempDay = 0;
-        tempMonths++;
         } 
     else if (tempMonths === 12 &&  tempDay === 31)
         {
@@ -280,6 +279,8 @@ var nxtDay = function()
         tempMonths=1;
         tempYear++;
         }  
+		
+		
 		
 }
 
@@ -331,7 +332,7 @@ var prvDay = function()
             dayHTMLchanger();
 
          }  
-        else 
+        else if(tempDay > 0)
     {
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
@@ -672,9 +673,9 @@ var eraseHTML = function()
 
 function gatherDate()
 {
-d = parseInt(document.getElementById("Day").value)
-m = parseInt(document.getElementById("Month").value)
-y = parseInt(document.getElementById("Year").value)
+d = parseInt(document.getElementById("inDay").value)
+m = parseInt(document.getElementById("inMonth").value)
+y = parseInt(document.getElementById("inYear").value)
 
 if((m === 4 || m === 6 || m === 9 || m === 11) && d <31)
 {
@@ -694,6 +695,11 @@ else if(m === 2 && (y%4 > 0) && d <29)
 }
 
 else{alert("incorrect date")}
+
+document.getElementById("inDay").value = "";
+document.getElementById("inMonth").value = "";
+document.getElementById("inYear").value = "";
+
 
 
 }
