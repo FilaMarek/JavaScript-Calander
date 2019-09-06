@@ -14,7 +14,9 @@ normalize.min.css" rel="stylesheet" />
         <div id ="filtered">
 
         <img src="top.jpg" alt="top image" height="500" width="100%">
-        <div id ="text"><a id ="menu" href="#bottom1">Home Page</a><br><a id ="menu" href="#bottom1">About me</a><br><a id ="menu" href="#bottom1">My other Projects</a></div>
+		
+        <div id ="text"><a id ="menu" href="#bottom1">Home Page</a><br><a id ="menu" href="#bottom1">About me</a><br>
+		<a id ="menu" href="https://github.com/FilaMarek/javascript-Chatbot."onclick="window.open(this.href, 'mywin','left=20,top=20,width=1000,height=800,toolbar=1,resizable=0'); return false;" >My other Projects</a></div>
             
             
             </div>
@@ -24,7 +26,22 @@ normalize.min.css" rel="stylesheet" />
 		<h1>Clean JavaScript Calendar</h1>
 		<p>This is a Javascript calendar just to practice my JS knowledge, I am aware that there are many different ways to create this, but I wanted to practice
 		case scenarios and if/then statements. Feel free to take the code from github and use it to you personel needs/tranings. <p>
+		
+				<div id ="dateChanger"> <!-- menu to change the HTML -->
+				<div id = "textDate">
+				<h4>Day:</h4>
+				<h4>Month:</h4>
+				<h4>Year:</h4>
+				</div>
+				<div id ="input"><input id ="Day" type="number" name="Day" min="1" max="31" ></div>
+				<div id ="input"><input id ="Month" type="number" name="Month" min="1" max="12" ></div>
+				<div id ="input"><input id ="Year" type="number" name="Year" min="1" max="9999"></div>
+				<button onmousedown="gatherDate()" id="confirm" class="button confirm">Confirm</button>
+				</div>
+		
 		</div>
+
+		
 	<div id="right">        <!-- ----------------------------------------- Calendar--------------------------------- -->
 		<div id="calander">
 			<div id="calHead">
@@ -41,7 +58,7 @@ normalize.min.css" rel="stylesheet" />
                 <button onmousedown="dayLayOut()" id="day" class="button dayLayOut">Day</button>
                 <button onmousedown="nxtDay()" id="buttonNxtDay" class="button nxtDay">Next Day</button>
                 <button onmousedown="prvDay()" id="buttonPrvDay" class="button prvDay">Previous Day</button>
-                
+
                 <!-- Buttons -->
                 
                 

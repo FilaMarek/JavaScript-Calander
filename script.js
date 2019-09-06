@@ -19,7 +19,7 @@ var tempYear = year;
 var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
 var textMonth = " "
 var numberOfTotalWeeks = 5;
-
+var d,m,y
 
 
 
@@ -664,5 +664,40 @@ var eraseHTML = function()
 
 
 // ----------------------------------------------------------END OF FULL MONTH PREVIEW
+
+
+/*--------------------Additions to Calander--------------------------*/
+
+
+
+function gatherDate()
+{
+d = parseInt(document.getElementById("Day").value)
+m = parseInt(document.getElementById("Month").value)
+y = parseInt(document.getElementById("Year").value)
+
+if((m === 4 || m === 6 || m === 9 || m === 11) && d <31)
+{
+	console.log(d);
+}
+else if((m === 1 || m === 3 || m === 5 || m === 7 || m === 8 || m === 10|| m === 12) && d <32)
+{
+	console.log(d);
+}
+else if(m === 2 && (y%4 === 0) && d <30)
+{
+	console.log(d);
+}
+else if(m === 2 && (y%4 > 0) && d <29)
+{
+	console.log(d);
+}
+
+else{alert("incorrect date")}
+
+
+}
+
+
 
 
