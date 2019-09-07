@@ -108,9 +108,9 @@ var dayLayOut = function()
 {
 	
 	if(currentCalMode !== 2){
-	tempDay = 1;
+
     currentCalMode = 2;
-    tempYear = year;
+    year = tempYear
     dayHTMLchanger();
     dayButtons();
     hideMonthButtons();// hides month buttons and Table
@@ -124,7 +124,6 @@ var MonthLayout = function()
 {
 	
 	if(currentCalMode !== 0){
-	tempDay = 1;
     currentCalMode = 0;
     year = tempYear
     dayHTMLchanger();
@@ -143,16 +142,15 @@ var weekLayout = function()
 
 	if(currentCalMode !== 1){
 	
-	tempDay = 1;
+
 	weekNumber = 1;
 	textMonths();
+	year = tempYear
     currentCalMode = 1;
     hideDayButtons();// hides day buttons and Table
     hideMonthButtons();// hides month buttons and Table
-    // I need a Var that tells me what mode we are in is it week/Month/ or day
     showWeekButtons();
 	document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
-    //eraseHTML();
 	}
 	else{}
 }
@@ -216,11 +214,18 @@ var nxtDay = function()
 	
 
 
-    if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10|| tempMonths === 12) && tempDay <= 31 )
+    if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10) && tempDay <= 31 )
         {
        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
        dayHTMLchanger();
         }
+	else if (tempMonths === 12 && tempDay <=31)
+	{
+	   dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+       dayHTMLchanger();
+		
+	}
+			
     else if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 8 || tempMonths === 10) && tempDay === 32 )
         {
         tempDay = 1;
@@ -271,13 +276,14 @@ var nxtDay = function()
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
         } 
-    else if (tempMonths === 12 &&  tempDay === 31)
+    else if (tempMonths === 12 &&  tempDay === 32)
         {
-        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)
-        dayHTMLchanger();
-        tempDay = 0;
+		tempDay = 1;
         tempMonths=1;
         tempYear++;
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)
+        dayHTMLchanger();
+
         }  
 		
 		
@@ -323,7 +329,7 @@ var prvDay = function()
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
         dayHTMLchanger();
     }
-    else if (tempMonths === 1 && tempDay < 1 )
+    else if (tempMonths === 1 && tempDay === 0 )
          {
             tempDay = 31;
             tempMonths = 12;
@@ -332,6 +338,10 @@ var prvDay = function()
             dayHTMLchanger();
 
          }  
+		 
+		 
+		 
+		 
         else if(tempDay > 0)
     {
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
@@ -679,19 +689,39 @@ y = parseInt(document.getElementById("inYear").value)
 
 if((m === 4 || m === 6 || m === 9 || m === 11) && d <31)
 {
-	console.log(d);
+	year = y;
+	tempYear = y
+	tempMonths = m;
+	tempDay = d;
+	setUpDate();
+	MonthLayout();
 }
 else if((m === 1 || m === 3 || m === 5 || m === 7 || m === 8 || m === 10|| m === 12) && d <32)
 {
-	console.log(d);
+	year = y;
+	tempYear = y
+	tempMonths = m;
+	tempDay = d;
+	setUpDate();
+	MonthLayout();
 }
 else if(m === 2 && (y%4 === 0) && d <30)
 {
-	console.log(d);
+	year = y;
+	tempYear = y
+	tempMonths = m;
+	tempDay = d;
+	setUpDate();
+	MonthLayout();
 }
 else if(m === 2 && (y%4 > 0) && d <29)
 {
-	console.log(d);
+	year = y;
+	tempYear = y
+	tempMonths = m;
+	tempDay = d;
+	setUpDate();
+	MonthLayout();
 }
 
 else{alert("incorrect date")}
