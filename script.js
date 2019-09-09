@@ -110,7 +110,7 @@ var dayLayOut = function()
 	if(currentCalMode !== 2){
 
     currentCalMode = 2;
-    year = tempYear
+    tempYear = year;
     dayHTMLchanger();
     dayButtons();
     hideMonthButtons();// hides month buttons and Table
@@ -125,7 +125,7 @@ var MonthLayout = function()
 	
 	if(currentCalMode !== 0){
     currentCalMode = 0;
-    year = tempYear
+    tempYear = year;
     dayHTMLchanger();
     ShowMonthButtons();
     hideDayButtons();// hides day buttons and Table
@@ -145,7 +145,7 @@ var weekLayout = function()
 
 	weekNumber = 1;
 	textMonths();
-	year = tempYear
+	tempYear = year;
     currentCalMode = 1;
     hideDayButtons();// hides day buttons and Table
     hideMonthButtons();// hides month buttons and Table
