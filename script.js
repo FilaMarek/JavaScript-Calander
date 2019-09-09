@@ -19,7 +19,7 @@ var tempYear = year;
 var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
 var textMonth = " "
 var numberOfTotalWeeks = 5;
-var d,m,y
+var d,m,y, jumping;
 
 
 
@@ -563,9 +563,9 @@ var monthTranslator = function()
   var monthSetup = function()
   {
       
-      year= dateobj.getFullYear();
+      let year= dateobj.getFullYear();
       days= dateobj.getDate();
-      currentMonths= dateobj.getMonth();
+      currentMonths = Months;
       daysOfTheweek= dateobj.getDay();
        if(daysOfTheweek ===5 && (tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10|| tempMonths === 12 ))
 	   {
@@ -653,6 +653,7 @@ var monthTranslator = function()
                    } // for temp week
                     
                 }//end of else if
+
   };// end of function calander
 
 
@@ -677,63 +678,7 @@ var eraseHTML = function()
 // ----------------------------------------------------------END OF FULL MONTH PREVIEW
 
 
+
 /*--------------------Additions to Calander--------------------------*/
-
-
-
-function gatherDate()
-{
-d = parseInt(document.getElementById("inDay").value)
-m = parseInt(document.getElementById("inMonth").value)
-y = parseInt(document.getElementById("inYear").value)
-
-if((m === 4 || m === 6 || m === 9 || m === 11) && d <31)
-{
-	year = y;
-	tempYear = y
-	tempMonths = m;
-	tempDay = d;
-	setUpDate();
-	MonthLayout();
-}
-else if((m === 1 || m === 3 || m === 5 || m === 7 || m === 8 || m === 10|| m === 12) && d <32)
-{
-	year = y;
-	tempYear = y
-	tempMonths = m;
-	tempDay = d;
-	setUpDate();
-	MonthLayout();
-}
-else if(m === 2 && (y%4 === 0) && d <30)
-{
-	year = y;
-	tempYear = y
-	tempMonths = m;
-	tempDay = d;
-	setUpDate();
-	MonthLayout();
-}
-else if(m === 2 && (y%4 > 0) && d <29)
-{
-	year = y;
-	tempYear = y
-	tempMonths = m;
-	tempDay = d;
-	setUpDate();
-	MonthLayout();
-}
-
-else{alert("incorrect date")}
-
-document.getElementById("inDay").value = "";
-document.getElementById("inMonth").value = "";
-document.getElementById("inYear").value = "";
-
-
-
-}
-
-
 
 
