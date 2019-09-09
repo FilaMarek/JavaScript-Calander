@@ -17,9 +17,40 @@
     border-width: 1px;
 	font-family: 'Acme', sans-serif;
 	width: 49%;
-    height: 200px;
+    height: 400px;
     float: left;
 }
+#dateChanger
+{
+	margin-left: 65%;
+	width: 200px;
+	height: 200px;
+	border: 2px solid black;
+}
+
+#textDate
+{
+  float: left;
+  width: 25%;
+}
+#input{
+	float: left;
+	width: 50%;
+}
+input
+{
+	margin-top: 30px;
+	margin-left: 10px;
+	width: 80%;	
+}
+h4
+{
+	margin-top: 35px;
+}
+
+
+
+
 
 #right {
     background-color: white;
@@ -194,6 +225,17 @@ width: 500px;
 
 /*_____________________________ buttons________________________________________ */
 
+#confirm
+{
+	border: none;
+    text-align: center;
+    text-decoration: none;
+    background-color: #D4D4D4;
+    border-radius: 2px; 
+	margin-top: 12px;
+	margin-left: 10px;
+}
+
 
 #button
 {
@@ -271,6 +313,20 @@ float: left;
   transform: translatey(4px);
 
 }
+
+
+#confirm:hover {
+    background-color: #474747;
+    color: white;
+    cursor: pointer;
+}
+
+#confirm:active {
+  background-color: #474747;
+  transform: translatey(4px);
+
+}
+
 
 
 

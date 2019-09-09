@@ -19,7 +19,7 @@ var tempYear = year;
 var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
 var textMonth = " "
 var numberOfTotalWeeks = 5;
-
+var d,m,y, jumping;
 
 
 
@@ -108,7 +108,7 @@ var dayLayOut = function()
 {
 	
 	if(currentCalMode !== 2){
-	tempDay = 1;
+
     currentCalMode = 2;
     tempYear = year;
     dayHTMLchanger();
@@ -124,9 +124,8 @@ var MonthLayout = function()
 {
 	
 	if(currentCalMode !== 0){
-	tempDay = 1;
     currentCalMode = 0;
-    year = tempYear
+    tempYear = year;
     dayHTMLchanger();
     ShowMonthButtons();
     hideDayButtons();// hides day buttons and Table
@@ -143,16 +142,15 @@ var weekLayout = function()
 
 	if(currentCalMode !== 1){
 	
-	tempDay = 1;
+
 	weekNumber = 1;
 	textMonths();
+	tempYear = year;
     currentCalMode = 1;
     hideDayButtons();// hides day buttons and Table
     hideMonthButtons();// hides month buttons and Table
-    // I need a Var that tells me what mode we are in is it week/Month/ or day
     showWeekButtons();
 	document.getElementById("Months").innerHTML = textMonth + "Week " + weekNumber;
-    //eraseHTML();
 	}
 	else{}
 }
@@ -214,20 +212,26 @@ var nxtDay = function()
 	     tempDay++;
 	
 	
-	if (tempDay >31)
-	{tempDay = 1}
 
-    if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10|| tempMonths === 12) && tempDay < 31 )
+
+    if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10) && tempDay <= 31 )
         {
        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
        dayHTMLchanger();
         }
-    else if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 8 || tempMonths === 10) && tempDay === 31 )
+	else if (tempMonths === 12 && tempDay <=31)
+	{
+	   dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+       dayHTMLchanger();
+		
+	}
+			
+    else if ((tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 8 || tempMonths === 10) && tempDay === 32 )
         {
+        tempDay = 1;
+        tempMonths++;
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
-        dayHTMLchanger();
-        tempDay = 0;
-        tempMonths++;   
+        dayHTMLchanger();		
          } 
     else if (tempMonths === 7  && tempDay === 31 )
         {
@@ -236,50 +240,53 @@ var nxtDay = function()
         tempDay = 0;
         tempMonths++;
         }
-    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay < 30)
+    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay <= 30)
         {
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
         } 
-    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay === 30)
+    else if((tempMonths === 4 || tempMonths === 6 || tempMonths === 9 || tempMonths === 11) && tempDay === 31)
         {
+        tempDay = 1;
+        tempMonths++;
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
-        tempDay = 0;
-        tempMonths++;
         } 
-    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay < 29) // Feb with 29 days every 4 years
+    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay <= 29) // Feb with 29 days every 4 years
         {
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
         dayHTMLchanger();
         }
-    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay === 29) // Feb with 29 days every 4 years
+    else if((tempMonths === 2 && (tempYear % 4)=== 0) &&  tempDay === 30) // Feb with 29 days every 4 years
         {
-        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
-        dayHTMLchanger();
-        tempDay = 0;
+        tempDay = 1;
         tempMonths++;
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
+        dayHTMLchanger();
         }
-    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay <28)// Feb with 28 days other years
+    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay <=28)// Feb with 28 days other years
         {   
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
         dayHTMLchanger();
         }
-    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay === 28)// Feb with 28 days other years
+    else if((tempMonths === 2 && (tempYear % 4)> 0) &&  tempDay === 29)// Feb with 28 days other years
         {
+        tempDay = 1;
+        tempMonths++;
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
-        tempDay = 0;
-        tempMonths++;
         } 
-    else if (tempMonths === 12 &&  tempDay === 31)
+    else if (tempMonths === 12 &&  tempDay === 32)
         {
-        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)
-        dayHTMLchanger();
-        tempDay = 0;
+		tempDay = 1;
         tempMonths=1;
         tempYear++;
+        dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)
+        dayHTMLchanger();
+
         }  
+		
+		
 		
 }
 
@@ -322,7 +329,7 @@ var prvDay = function()
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear) 
         dayHTMLchanger();
     }
-    else if (tempMonths === 1 && tempDay < 1 )
+    else if (tempMonths === 1 && tempDay === 0 )
          {
             tempDay = 31;
             tempMonths = 12;
@@ -331,7 +338,11 @@ var prvDay = function()
             dayHTMLchanger();
 
          }  
-        else 
+		 
+		 
+		 
+		 
+        else if(tempDay > 0)
     {
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)  
         dayHTMLchanger();
@@ -552,9 +563,9 @@ var monthTranslator = function()
   var monthSetup = function()
   {
       
-      year= dateobj.getFullYear();
+      let year= dateobj.getFullYear();
       days= dateobj.getDate();
-      currentMonths= dateobj.getMonth();
+      currentMonths = Months;
       daysOfTheweek= dateobj.getDay();
        if(daysOfTheweek ===5 && (tempMonths === 1 || tempMonths === 3 || tempMonths === 5 || tempMonths === 7 || tempMonths === 8 || tempMonths === 10|| tempMonths === 12 ))
 	   {
@@ -642,6 +653,7 @@ var monthTranslator = function()
                    } // for temp week
                     
                 }//end of else if
+
   };// end of function calander
 
 
@@ -664,5 +676,9 @@ var eraseHTML = function()
 
 
 // ----------------------------------------------------------END OF FULL MONTH PREVIEW
+
+
+
+/*--------------------Additions to Calander--------------------------*/
 
 
