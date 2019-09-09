@@ -281,6 +281,7 @@ var nxtDay = function()
 		tempDay = 1;
         tempMonths=1;
         tempYear++;
+		year = tempYear;
         dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)
         dayHTMLchanger();
 
@@ -334,6 +335,7 @@ var prvDay = function()
             tempDay = 31;
             tempMonths = 12;
             tempYear--;
+			year = tempYear;
             dateobj =  new Date(tempMonths  + " " + tempDay + " " + tempYear)
             dayHTMLchanger();
 
