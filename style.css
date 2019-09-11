@@ -3,11 +3,12 @@
 
 #filtered{
     background: black;
-    height: 500px;
+    height: 300px;
 }
 
 #filtered img {
   opacity: 0.3;
+  height:300px;
 }
 
 
@@ -16,10 +17,21 @@
     border-style: solid;
     border-width: 1px;
 	font-family: 'Acme', sans-serif;
-	width: 49%;
-    height: 400px;
+	width: 50%;
+    height: 200px;
     float: left;
 }
+
+#left2 {
+    margin-top: 38px;
+    border-style: solid;
+    border-width: 1px;
+	font-family: 'Acme', sans-serif;
+	width: 50%;
+    height: 250px;
+    float: left;
+}
+
 #dateChanger
 {
 	margin-left: 65%;
@@ -33,15 +45,10 @@
   float: left;
   width: 25%;
 }
-#input{
-	float: left;
-	width: 50%;
-}
-input
+ /* --------------------Input for Menu---------------*/
+input   
 {
-	margin-top: 30px;
-	margin-left: 10px;
-	width: 80%;	
+	width: 200px;	
 }
 h4
 {
@@ -49,7 +56,11 @@ h4
 }
 
 
-
+#schedule
+{
+background-color: #0A1CEA;	
+	
+}
 
 
 #right {
@@ -149,7 +160,7 @@ td{
 }
 
 
-#tableMiddle{
+.tableMiddle{
     height: 33%;
 
     
@@ -157,7 +168,7 @@ td{
 
 
 
-#tableButtom{
+.tableButtom{
     height: 33%;
    font-style: bold;
     
@@ -345,6 +356,19 @@ float: left;
 }
 
 
+#monthsMenu{
+	margin-left: 20px;
+}
+
+#daysMenu{
+	margin-top: 2px;
+	margin-left: 37px;
+}
+#yearMenu{
+	margin-top: 2px;
+	margin-left: 33px;
+}
+
 
 
 /* additional buttons */
@@ -370,7 +394,7 @@ float: left;
 
  @media only screen and (max-width: 1500px)
             {
-                #top, #left, #right
+                #top, #left, #right #left2
                 {
                     float: none;
                     width: 100%;

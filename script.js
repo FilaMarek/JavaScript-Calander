@@ -4,7 +4,7 @@
 
 
 // Variables
-
+var tday = new Date().getDate();
 var currentMonths = new Date().getMonth();// what month it is
 var Months = currentMonths;
 var year =  new Date().getFullYear();
@@ -19,19 +19,20 @@ var tempYear = year;
 var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
 var textMonth = " "
 var numberOfTotalWeeks = 5;
-var d,m,y, jumping;
+var d,m,y,scheduleEvent, compareArr,tempVar, tempVar2,divEvent;
 
 
 
 //-------------------------------Buttons-------------------------
 var setUpDate = function () /// function on load
 { 
-    monthTranslator();  
+    monthTranslator();
     //countingDays();
 	monthSetup();
     hideDayButtons();
     hideWeekButtons();
 	textMonths();
+	today();	
 }
 
 var textMonths = function(){
@@ -519,7 +520,9 @@ var monthTranslator = function()
 {
    
     switch (Months) {
-    case 0:
+    
+	
+	case 0:
     document.getElementById("Months").innerHTML = "January " + year;
     break;
     case 1:
@@ -661,14 +664,14 @@ var monthTranslator = function()
 
 var eraseHTML = function()
 {
-    var tempVar = tempWeekNumb =1;
-    var tempVar2 = daysOfTheweek=0;
+     tempVar = tempWeekNumb =1;
+     tempVar2 = daysOfTheweek=0;
 
                   for(tempVar;tempVar<7;tempVar++){
               for(tempVar2=0;tempVar2<=6;tempVar2++)
                   {
 
-                    document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML = " ";   
+                    document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML = " ";   // takes day from a month (string)
                   }// for days
               }  // for weeks
 }
@@ -682,5 +685,61 @@ var eraseHTML = function()
 
 
 /*--------------------Additions to Calander--------------------------*/
+function collectData()
+{
+	let scheduleEvent = document.getElementById("eventName").value
+	let m = document.getElementById("monthsMenu").value
+	let d = document.getElementById("daysMenu").value
+	let y = document.getElementById("yearMenu").value
+	let compareArr = document.getElementById("Months").innerHTML.split(" ")
+    let tempVar = tempWeekNumb =1;
+    let tempVar2 = daysOfTheweek=0;
+	let divEvent = '<div id ="schedule">'+scheduleEvent+'</div>'
+	
+	
+			if( m === compareArr[0]/*month*/ && y === compareArr[1]/*YEAR*/){
+              for(tempVar;tempVar<7;tempVar++){
+              for(tempVar2=0;tempVar2<=6;tempVar2++)
+                  {
+					if(d === document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML)
+					{
+						document.getElementById("tableMiddle"+ tempVar/*week*/+"-"+tempVar2/*day*/).insertAdjacentHTML('beforeEnd', divEvent)
+						console.log(scheduleEvent+ " " + m+ " " + d+ " " + y+ " ")
+					}
+					else {};
+                  }// for days
+              }  // for weeks
+					//						document.getElementById("tableMiddle"+ tempVar/*week*/+"-"+tempVar2/*day*/).style.backgroundColor = '#F7DC6F';
+					//					document.getElementById("tableButtom"+ tempVar/*week*/+"-"+tempVar2/*day*/).style.backgroundColor = '#F7DC6F';	
+				/*	if( m === compareArr[0] && y === compareArr[1] )
+					{console.log("it works!")}
+				else{console.log("it doesn't work")}
+					*/
+					//
+	scheduleEvent = document.getElementById("eventName").value = "";
+			}
+	  };
+	
+
+
+
+
+function today(){
+	 let tempVar = tempWeekNumb =1;
+     let tempVar2 = daysOfTheweek=0;
+	
+				for(tempVar;tempVar<7;tempVar++){
+				for(tempVar2=0;tempVar2<=6;tempVar2++)
+                  {
+					if(tday === parseInt(document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML))
+					{	
+						document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).parentNode.style.backgroundColor = '#CCCDD8';
+					}else
+					{}
+                    //document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).style.border = '#F7DC6F';   // takes day from a month (string)
+                  }// for days
+              }  // for weeks
+};
+
 
 
