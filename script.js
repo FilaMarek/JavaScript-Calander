@@ -4,7 +4,7 @@
 
 
 // Variables
-
+var tday = new Date().getDate();
 var currentMonths = new Date().getMonth();// what month it is
 var Months = currentMonths;
 var year =  new Date().getFullYear();
@@ -19,19 +19,23 @@ var tempYear = year;
 var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
 var textMonth = " "
 var numberOfTotalWeeks = 5;
-var d,m,y, jumping;
+var eventArray=[];
+var d,m,y,scheduleEvent, compareArr,tempVar, tempVar2,divEvent,tdayMonth,Monthchecker;
+
 
 
 
 //-------------------------------Buttons-------------------------
 var setUpDate = function () /// function on load
 { 
-    monthTranslator();  
+    monthTranslator();
     //countingDays();
 	monthSetup();
     hideDayButtons();
     hideWeekButtons();
 	textMonths();
+    tdayMonth = document.getElementById("Months").innerHTML ;
+	today();	
 }
 
 var textMonths = function(){
@@ -422,7 +426,7 @@ var nextMonth = function() // button next month
 		dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
 		monthSetup(); 
     }
-	return {dateobj};
+    today()
 };
 //-------------------------------last month-------------------------
 var lastMonth = function()// button previouse month
@@ -445,6 +449,7 @@ var lastMonth = function()// button previouse month
         monthTranslator();
         monthSetup(); 
     }
+    today()
 };
 
 
@@ -519,7 +524,9 @@ var monthTranslator = function()
 {
    
     switch (Months) {
-    case 0:
+    
+	
+	case 0:
     document.getElementById("Months").innerHTML = "January " + year;
     break;
     case 1:
@@ -661,14 +668,14 @@ var monthTranslator = function()
 
 var eraseHTML = function()
 {
-    var tempVar = tempWeekNumb =1;
-    var tempVar2 = daysOfTheweek=0;
+     tempVar = tempWeekNumb =1;
+     tempVar2 = daysOfTheweek=0;
 
                   for(tempVar;tempVar<7;tempVar++){
               for(tempVar2=0;tempVar2<=6;tempVar2++)
                   {
 
-                    document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML = " ";   
+                    document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML = " ";   // takes day from a month (string)
                   }// for days
               }  // for weeks
 }
@@ -682,5 +689,94 @@ var eraseHTML = function()
 
 
 /*--------------------Additions to Calander--------------------------*/
+
+
+
+
+/*--------------------Event scheduler--------------------------*/
+
+function collectData()
+{
+    compareArr = document.getElementById("Months").innerHTML.split(" ")
+	let scheduleEvent = document.getElementById("eventName").value
+	let m = document.getElementById("monthsMenu").value
+	let d = document.getElementById("daysMenu").value
+	let y = document.getElementById("yearMenu").value
+    let tempVar = tempWeekNumb =1;
+    let tempVar2 = daysOfTheweek=0;
+	let divEvent = '<div id ='+ scheduleEvent +' class = "schedule">'+scheduleEvent+'</div>'
+	
+	
+			if( m === compareArr[0]/*month*/ && y === compareArr[1]/*YEAR*/){
+              for(tempVar;tempVar<7;tempVar++){
+              for(tempVar2=0;tempVar2<=6;tempVar2++)
+                  {
+					if(d === document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML)
+					{
+						document.getElementById("tableMiddle"+ tempVar/*week*/+"-"+tempVar2/*day*/).insertAdjacentHTML('beforeEnd', divEvent)
+						console.log(scheduleEvent+ " " + m+ " " + d+ " " + y+ " ")
+					}
+					else {};
+                  }// for days
+              }  // for weeks
+			  test();
+	          scheduleEvent = document.getElementById("eventName").value = "";
+              document.getElementById("monthsMenu").value = "--"
+              document.getElementById("daysMenu").value = "--"
+              document.getElementById("yearMenu").value = "--"
+			}
+	  };
+	
+
+
+//-----------------------------highlighting today-------------------------//
+function today(){
+
+	 let tempVar = tempWeekNumb =1;
+     let tempVar2 = daysOfTheweek=0;
+    
+    
+	   if(tdayMonth === document.getElementById("Months").innerHTML){
+				for(tempVar;tempVar<7;tempVar++){
+				for(tempVar2=0;tempVar2<=6;tempVar2++)
+                  {
+					if(tday === parseInt(document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML))
+					{	
+						Monthchecker = document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/)
+                            Monthchecker.parentNode.style.backgroundColor = '#CCCDD8';
+					}else
+					{}
+                    //document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).style.border = '#F7DC6F';   // takes day from a month (string)
+                  }// for days
+              }// for weeks
+       } else {Monthchecker.parentNode.style.backgroundColor = '#F3F3F3'}
+};
+
+
+
+function test()
+{
+	let scheduleEvent = document.getElementById("eventName").value
+	let m = document.getElementById("monthsMenu").value
+	let d = document.getElementById("daysMenu").value
+	let y = document.getElementById("yearMenu").value
+	var eventMonthAndDayAndName=m+" "+d+" "+scheduleEvent;
+	
+	eventArray.push(eventMonthAndDayAndName)
+	
+
+	
+	console.log(eventArray);
+	return eventMonthAndDayAndName;
+
+
+}
+
+
+
+
+
+
+
 
 
