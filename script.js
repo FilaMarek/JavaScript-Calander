@@ -19,7 +19,9 @@ var tempYear = year;
 var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
 var textMonth = " "
 var numberOfTotalWeeks = 5;
+var eventArray=[];
 var d,m,y,scheduleEvent, compareArr,tempVar, tempVar2,divEvent,tdayMonth,Monthchecker;
+
 
 
 
@@ -687,6 +689,12 @@ var eraseHTML = function()
 
 
 /*--------------------Additions to Calander--------------------------*/
+
+
+
+
+/*--------------------Event scheduler--------------------------*/
+
 function collectData()
 {
     compareArr = document.getElementById("Months").innerHTML.split(" ")
@@ -696,7 +704,7 @@ function collectData()
 	let y = document.getElementById("yearMenu").value
     let tempVar = tempWeekNumb =1;
     let tempVar2 = daysOfTheweek=0;
-	let divEvent = '<div id ="schedule">'+scheduleEvent+'</div>'
+	let divEvent = '<div id ='+ scheduleEvent +' class = "schedule">'+scheduleEvent+'</div>'
 	
 	
 			if( m === compareArr[0]/*month*/ && y === compareArr[1]/*YEAR*/){
@@ -711,6 +719,7 @@ function collectData()
 					else {};
                   }// for days
               }  // for weeks
+			  test();
 	          scheduleEvent = document.getElementById("eventName").value = "";
               document.getElementById("monthsMenu").value = "--"
               document.getElementById("daysMenu").value = "--"
@@ -720,7 +729,7 @@ function collectData()
 	
 
 
-
+//-----------------------------highlighting today-------------------------//
 function today(){
 
 	 let tempVar = tempWeekNumb =1;
@@ -741,8 +750,33 @@ function today(){
                   }// for days
               }// for weeks
        } else {Monthchecker.parentNode.style.backgroundColor = '#F3F3F3'}
-               
 };
+
+
+
+function test()
+{
+	let scheduleEvent = document.getElementById("eventName").value
+	let m = document.getElementById("monthsMenu").value
+	let d = document.getElementById("daysMenu").value
+	let y = document.getElementById("yearMenu").value
+	var eventMonthAndDayAndName=m+" "+d+" "+scheduleEvent;
+	
+	eventArray.push(eventMonthAndDayAndName)
+	
+
+	
+	console.log(eventArray);
+	return eventMonthAndDayAndName;
+
+
+}
+
+
+
+
+
+
 
 
 
