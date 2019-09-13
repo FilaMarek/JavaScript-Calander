@@ -837,8 +837,32 @@ function deletingMonthEvents
 	//document.getElementById("test").style.display = "none" // deletes HTML MUST BE DELETED BY ID
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+/// deleting html
+const test = document.getElementsByClassName("schedule");
 
-
+while (elements.length > 0) elements[0].remove();
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 ---------------------------
  ["hi", "bye"]
