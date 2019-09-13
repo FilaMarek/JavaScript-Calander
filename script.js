@@ -19,7 +19,6 @@ var tempYear = year;
 var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
 var textMonth = " "
 var numberOfTotalWeeks = 5;
-var eventArray=[];
 var d,m,y,scheduleEvent, compareArr,tempVar, tempVar2,divEvent,tdayMonth,Monthchecker;
 
 
@@ -142,7 +141,7 @@ var MonthLayout = function()
 
 //-------------------------------week layout-------------------------
 var weekLayout = function()
-{ 
+{ /// mental note make week numbers from 1-52 figuer out how to count week numbers in a calander for xample  sept 13 is week 37
 
 	if(currentCalMode !== 1){
 	
@@ -684,7 +683,7 @@ var eraseHTML = function()
 
 
 
-// ----------------------------------------------------------END OF FULL MONTH PREVIEW
+// ----------------------------------------------------------END OF FULL MONTH PREVIEW-------------------
 
 
 
@@ -704,7 +703,8 @@ function collectData()
 	let y = document.getElementById("yearMenu").value
     let tempVar = tempWeekNumb =1;
     let tempVar2 = daysOfTheweek=0;
-	let divEvent = '<div id ='+ scheduleEvent +' class = "schedule">'+scheduleEvent+'</div>'
+	let divEvent = '<div id ='+ m +' class = "schedule '+ scheduleEvent +'">'+scheduleEvent+'</div>'
+	ObjSchedule();
 	
 	
 			if( m === compareArr[0]/*month*/ && y === compareArr[1]/*YEAR*/){
@@ -714,17 +714,19 @@ function collectData()
 					if(d === document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML)
 					{
 						document.getElementById("tableMiddle"+ tempVar/*week*/+"-"+tempVar2/*day*/).insertAdjacentHTML('beforeEnd', divEvent)
-						console.log(scheduleEvent+ " " + m+ " " + d+ " " + y+ " ")
+						//console.log(scheduleEvent+ " " + m+ " " + d+ " " + y+ " ")
+						
 					}
 					else {};
                   }// for days
               }  // for weeks
-			  test();
+
+			}
 	          scheduleEvent = document.getElementById("eventName").value = "";
               document.getElementById("monthsMenu").value = "--"
               document.getElementById("daysMenu").value = "--"
               document.getElementById("yearMenu").value = "--"
-			}
+			
 	  };
 	
 
@@ -752,25 +754,120 @@ function today(){
        } else {Monthchecker.parentNode.style.backgroundColor = '#F3F3F3'}
 };
 
+//-----------------------------event added in to an object-------------------------//
 
 
-function test()
+ObjFull = {eventArray: []};
+currentMonthObj = {monthlyArray:[]};
+
+function Appointment(eventName, eventMonth, eventDay, eventYear) {
+
+  this.eventName = scheduleEvent;
+  this.month = eventMonth;
+  this.day = eventDay;
+  this.year = eventYear;
+}
+
+
+
+function ObjSchedule()
 {
-	let scheduleEvent = document.getElementById("eventName").value
-	let m = document.getElementById("monthsMenu").value
-	let d = document.getElementById("daysMenu").value
-	let y = document.getElementById("yearMenu").value
-	var eventMonthAndDayAndName=m+" "+d+" "+scheduleEvent;
-	
-	eventArray.push(eventMonthAndDayAndName)
-	
+		 scheduleEvent = document.getElementById("eventName").value;
+		 let m = document.getElementById("monthsMenu").value;
+		 let d = document.getElementById("daysMenu").value;
+		 let y = document.getElementById("yearMenu").value;
+		
+		var newAppointment = new Appointment(scheduleEvent, m, d, y);
+		ObjFull.eventArray.push(newAppointment);
+		console.log(ObjFull);	
+}
 
+
+
+function currentMontheventObj()
+{
+	let tdayMonth = document.getElementById("Months").innerHTML;
+	let compareArr = document.getElementById("Months").innerHTML.split(" ")	
+	arrMonthCheck = ObjFull.eventArray.length;
 	
-	console.log(eventArray);
-	return eventMonthAndDayAndName;
+	
+	for(i = 0; i<arrMonthCheck;i++)
+	{
+		if(ObjFull.eventArray[i].month === compareArr[0])
+		{
+		 newMonthEvent = ObjFull.eventArray[i];
+		 currentMonthObj.monthlyArray.push(newMonthEvent);
+		 console.log(currentMonthObj);
+		}
+	}
+	
+	//console.log(ObjFull.eventArray[0].month)
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+function deletingMonthEvents
+{
+
 
 
 }
+*/
+
+
+
+/*
+
+//ObjFull.eventArray[0]	
+
+/// we need 2 object similar 1) for current month 2) for whole calander kind 
+
+	//  fruits.splice(2[howmany idexes to jump], 1[how many indexes delete]);  /// deletes array from object
+	//document.getElementById("test").style.display = "none" // deletes HTML MUST BE DELETED BY ID
+
+
+
+
+
+---------------------------
+ ["hi", "bye"]
+ ["czesc", "br"]
+
+arr.splice(1,0, arr2[0])
+
+arr 
+(3) ["hi", "czesc", "bye"]
+------------
+
+
+arr.push(1,0, arr2[0])
+6
+arr 
+(6) ["hi", "czesc", "bye", 1, 0, "czesc"]
+
+
+*/
+
+
+
+
+
+
+
+
+
+
 
 
 
