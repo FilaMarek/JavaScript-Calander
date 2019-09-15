@@ -19,7 +19,7 @@ var tempYear = year;
 var currentCalMode = 0; // 0 is Month mode, 1 is week mode, 2 is day Mode
 var textMonth = " "
 var numberOfTotalWeeks = 5;
-var d,m,y,scheduleEvent, compareArr,tempVar, tempVar2,divEvent,tdayMonth,Monthchecker;
+var d,m,y,scheduleEvent, compareArr,tempVar, tempVar2,divEvent,tdayMonth,Monthchecker,z;
 
 
 
@@ -406,6 +406,7 @@ var prvWeek = function()
 
 var nextMonth = function() // button next month
 {
+    
     eraseHTML();
 	numberOfTotalWeeks = 5;
     if (Months < 11)// if Month is not December
@@ -425,11 +426,18 @@ var nextMonth = function() // button next month
 		dateobj =  new Date(tempMonths  +" " + 1 + " " + year);
 		monthSetup(); 
     }
-    today()
+    today();
+    deleteingHTMLevent();
+    compareArr = document.getElementById("Months").innerHTML.split(" ");
+    currentMontheventObj();
+    nextMonthEvents();
+
+    //currentMonthObj = {monthlyArray:[]};// last change of this function
 };
 //-------------------------------last month-------------------------
 var lastMonth = function()// button previouse month
 {
+    
 	eraseHTML();
 	numberOfTotalWeeks = 5;
     if (Months > 0)// if Month is not Jan.
@@ -448,7 +456,15 @@ var lastMonth = function()// button previouse month
         monthTranslator();
         monthSetup(); 
     }
-    today()
+    today();
+    deleteingHTMLevent();
+    
+    compareArr = document.getElementById("Months").innerHTML.split(" ");
+   
+    currentMontheventObj();
+    nextMonthEvents();
+
+   //currentMonthObj = {monthlyArray:[]};// last change of this function
 };
 
 
@@ -703,7 +719,7 @@ function collectData()
 	let y = document.getElementById("yearMenu").value
     let tempVar = tempWeekNumb =1;
     let tempVar2 = daysOfTheweek=0;
-	let divEvent = '<div id ='+ m +' class = "schedule '+ scheduleEvent +'">'+scheduleEvent+'</div>'
+	let divEvent = '<div id ='+ m +' class = "schedule '+ scheduleEvent +'">'+scheduleEvent+'</div>';
 	ObjSchedule();
 	
 	
@@ -728,6 +744,53 @@ function collectData()
               document.getElementById("yearMenu").value = "--"
 			
 	  };
+
+
+/////  currentMonthObj = {monthlyArray:[]};    Object for next month and updates te HTML from this object------------------------------------------------------
+
+function nextMonthEvents()
+{   
+    //currentMonthObj.monthlyArray;
+    //let scheduleEvent = currentMonthObj.monthlyArray[0].eventName;
+    let tempVar = 1;
+    let tempVar2 = 0;
+                z = 0;
+     mm = currentMonthObj.monthlyArray[z].month;
+     dd = currentMonthObj.monthlyArray[z].day;
+     yy = currentMonthObj.monthlyArray[z].year;
+    
+        if( mm === compareArr[0]/*month*/ && yy === compareArr[1]/*YEAR*/){
+
+
+              for(tempVar;tempVar<7;tempVar++){
+              for(tempVar2=0;tempVar2<=6;tempVar2++)
+                  {   
+					if(dd === document.getElementById("tableTop"+ tempVar/*week*/+"-"+tempVar2/*day*/).innerHTML)
+					{
+                        
+                        let divEvent = '<div id ='+ mm +' class = "schedule '+ currentMonthObj.monthlyArray[z].eventName +'">'+currentMonthObj.monthlyArray[z].eventName+'</div>';
+						document.getElementById("tableMiddle"+ tempVar/*week*/+"-"+tempVar2/*day*/).insertAdjacentHTML('beforeEnd', divEvent)
+                        z++;
+                        
+                        if( z <= currentMonthObj.monthlyArray.length-1){
+                         scheduleEvent = currentMonthObj.monthlyArray[z].eventName;
+                         dd = currentMonthObj.monthlyArray[z].day;
+                        tempVar2 = 0;   
+                        tempVar = 1;
+                        }
+                        
+						//console.log(scheduleEvent+ " " + m+ " " + d+ " " + y+ " ")
+					}
+					else {};
+                  }// for days
+              }  // for weeks
+
+			}
+    
+}
+
+
+
 	
 
 
@@ -786,6 +849,8 @@ function ObjSchedule()
 
 function currentMontheventObj()
 {
+    currentMonthObj = {monthlyArray:[]};
+    
 	let tdayMonth = document.getElementById("Months").innerHTML;
 	let compareArr = document.getElementById("Months").innerHTML.split(" ")	
 	arrMonthCheck = ObjFull.eventArray.length;
@@ -793,23 +858,31 @@ function currentMontheventObj()
 	
 	for(i = 0; i<arrMonthCheck;i++)
 	{
-		if(ObjFull.eventArray[i].month === compareArr[0])
+		if(ObjFull.eventArray[i].month === compareArr[0] && ObjFull.eventArray[i].year === compareArr[1] )
 		{
 		 newMonthEvent = ObjFull.eventArray[i];
 		 currentMonthObj.monthlyArray.push(newMonthEvent);
-		 console.log(currentMonthObj);
+		 //console.log(currentMonthObj);
 		}
+
 	}
 	
-	//console.log(ObjFull.eventArray[0].month)
+return currentMonthObj;
 	
 	
-}
+};
 
 
 
 
+function deleteingHTMLevent()
+{
+    /// deleting html
+const HTMLeventy = document.getElementsByClassName("schedule");
 
+while (HTMLeventy.length > 0) HTMLeventy[0].remove();
+    
+};
 
 
 
@@ -850,10 +923,7 @@ function deletingMonthEvents
 	
 	
 	
-/// deleting html
-const test = document.getElementsByClassName("schedule");
 
-while (elements.length > 0) elements[0].remove();
 	
 	
 	
